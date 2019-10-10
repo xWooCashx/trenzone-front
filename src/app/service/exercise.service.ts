@@ -11,7 +11,7 @@ export class ExerciseService {
   private exerciseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.exerciseUrl = 'http://localhost:8080/exercise';
+    this.exerciseUrl = 'http://trenzone-server.herokuapp.com/exercise';
   }
 
   public findAll(): Observable<Exercise[]> {
