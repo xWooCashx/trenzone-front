@@ -1,0 +1,39 @@
+table{
+  width: 100%;
+}
+th,td{
+  padding: 10px;
+}
+
+textarea{
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+}
+
+button{
+  margin-top: 7%;
+}
+
+.container{
+  padding-bottom: 10%;
+}
+
+.addButton{
+  padding-top: 5%;
+  text-align: center;
+}
+
+.name{
+  width: 20%;
+}
+.type{
+  width: 20%;
+}
+.desc{
+  width: 53%;
+}
+.opt{
+  width: 7%;
+}
+

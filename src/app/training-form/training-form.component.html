@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-3 trainingCreator">
+      <div class="card-body">
+        <div class="form-group">
+          <h2 (click)="selectedDay = 'pon'">Poniedziałek</h2>
+          <div *ngIf="selectedDay == 'pon'">
+            <form (ngSubmit)="addActivity()">
+              <select class="form-control">
+                <option *ngFor="let exercise of exercises" [value]="exercise.name">{{exercise.name}}</option>
+              </select>
+            </form>
+            <button class="btn"> Add Activity</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2 (click)="selectedDay = 'wt'">Wtorek</h2>
+          <div *ngIf="selectedDay == 'wt'">
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2>Środa</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2>Czwartek</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2>Piątek</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2>Sobota</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <h2>Niedziela</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-md-offset-3 trainingDetails">
+      <form (ngSubmit)="onSubmit()" #trainingForm="ngForm">
+        <div class="card my-5" style="align-content: center">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="training.name"
+                     class="form-control" id="name" name="name" placeholder="Enter training name">
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" [(ngModel)]="training.name"
+                     class="form-control" id="type" name="type" placeholder="Enter training type">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea rows="12" [(ngModel)]="training.description"
+                        class="form-control" id="description" name="description"
+                        placeholder="Enter training description">
+              </textarea>
+            </div>
+            <button type="submit" [disabled]="!trainingForm.form.valid" class="btn btn-info">Submit</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

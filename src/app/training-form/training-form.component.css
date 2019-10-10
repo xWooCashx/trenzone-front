@@ -1,0 +1,29 @@
+textarea{
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+}
+
+form{
+  width: 100%;
+}
+
+select{
+  width: 30%;
+}
+
+h2{
+  cursor: pointer;
+}
+
+.trainingCreator{
+  float: left;
+}
+
+.trainingDetails{
+  float: right;
+}
+
+.card-body{
+
+}
