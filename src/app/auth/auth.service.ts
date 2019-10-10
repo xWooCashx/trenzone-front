@@ -14,8 +14,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://trenzone-server.herokuapp.com/auth/signin';
-  private signUpUrl = 'http://trenzone-server.herokuapp.com/auth/signup';
+  private loginUrl = 'https://trenzone-server.herokuapp.com/auth/signin';
+  private signUpUrl = 'https://trenzone-server.herokuapp.com/auth/signup';
 
   constructor(private http: HttpClient) {
   }
