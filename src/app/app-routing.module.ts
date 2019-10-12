@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TrainingListComponent} from './training-list/training-list.component';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './auth/components/login/login.component';
@@ -8,7 +7,6 @@ import {RegisterComponent} from './auth/components/register/register.component';
 import {TrainingComponent} from './pages/training/training.component';
 
 const routes: Routes = [
-  {path: 'training', component: TrainingListComponent},
   {path: 'exercise', component: ExercisesListComponent},
   {path: 'home', component: HomeComponent},
   {path: 'auth/login', component: LoginComponent},
