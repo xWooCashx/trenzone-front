@@ -8,6 +8,8 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './auth/components/login/login.component';
 import {RegisterComponent} from './auth/components/register/register.component';
 import {NewTrainingComponent} from './pages/new-training/new-training.component';
+import {TrainigEditionComponent} from './pages/trainig-edition/trainig-edition.component';
+import {TrainingComponent} from './pages/training/training.component';
 
 const routes: Routes = [
   {path: 'training', component: TrainingListComponent},
@@ -17,7 +19,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'auth/login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
-  {path: 'new-training', component: NewTrainingComponent},
+  {path: 'training-creator', component: TrainingComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

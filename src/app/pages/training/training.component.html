@@ -1,0 +1,18 @@
+<div class="details">
+  <app-training-details [training]="training"></app-training-details>
+</div>
+<div cdkDropListGroup class="activities-table">
+  <div class="example-container" *ngFor="let item of activities | keyvalue">
+    <h2>{{days[item.key]}}</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="item.value"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let activity of item.value" cdkDrag>
+        <app-activity-info [activity]="activity"></app-activity-info>
+      </div>
+    </div>
+  </div>
+</div>
+

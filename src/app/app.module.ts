@@ -16,15 +16,17 @@ import {TrainingCreatorComponent} from './training-creator/training-creator.comp
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatInputModule, MatTableModule} from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ExercisesListComponent } from './exercises-list/exercises-list.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './auth/components/login/login.component';
-import { RegisterComponent } from './auth/components/register/register.component';
-import { UserComponent } from './auth/components/user/user.component';
-import { PmComponent } from './auth/components/pm/pm.component';
-import { AdminComponent } from './auth/components/admin/admin.component';
-import { NewTrainingComponent } from './pages/new-training/new-training.component';
+import {ExercisesListComponent} from './exercises-list/exercises-list.component';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './auth/components/login/login.component';
+import {RegisterComponent} from './auth/components/register/register.component';
+import {UserComponent} from './auth/components/user/user.component';
+import {PmComponent} from './auth/components/pm/pm.component';
+import {AdminComponent} from './auth/components/admin/admin.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ActivityInfoComponent} from './pages/training/activity-info/activity-info.component';
+import { TrainingComponent } from './pages/training/training.component';
+import { TrainingDetailsComponent } from './pages/training/training-details/training-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     UserComponent,
     PmComponent,
     AdminComponent,
-    NewTrainingComponent,
+    ActivityInfoComponent,
+    TrainingComponent,
+    TrainingDetailsComponent,
   ],
   imports: [
     BrowserModule,
