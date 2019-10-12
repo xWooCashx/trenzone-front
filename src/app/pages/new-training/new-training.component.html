@@ -1,0 +1,30 @@
+{{training.name}}
+<div cdkDropListGroup>
+
+  <div class="example-container" *ngFor="let item of activities | keyvalue">
+    <h2>{{days[item.key]}}</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="item.value"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let activity of item.value" cdkDrag>{{activity.id}}</div>
+    </div>
+  </div>
+</div>
+<!--<div class="example-container" *ngFor="let day of days;let i = index">-->
+<!--  <h2>{{day}}</h2>-->
+<!--  <h2>{{activities[i]}}</h2>-->
+<!--  <div class="example-box" *ngFor="let item of activities[i]" cdkDrag>{{item.id}}</div>-->
+<!--  <div-->
+<!--    cdkDropList-->
+<!--    #todoList="cdkDropList"-->
+<!--    [cdkDropListData]="activities[i]"-->
+<!--    [cdkDropListConnectedTo]="[doneList]"-->
+<!--    class="example-list"-->
+<!--    (cdkDropListDropped)="drop($event)">-->
+<!--    <div class="example-box" *ngFor="let item of activities[i]" cdkDrag>{{item.id}}</div>-->
+<!--  </div>-->
+<!--</div>-->
+
+

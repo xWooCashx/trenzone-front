@@ -1,24 +1,29 @@
-.nav-item{
+.nav-item {
   margin: 1%;
 }
-.TZ{
+
+.TZ {
   font-size: 50px;
   font-family: Perpetua Titling MT;
 }
 
-li{
+li {
   position: relative;
   border: 5px;
 }
 
-.allnavbar{
+.allnavbar {
   position: fixed;
   z-index: 999;
   width: 100%;
   height: 80px;
 }
 
-.routerdiv{
-  padding-top: 90px;
+.routerdiv {
+  position: absolute;
+  top: 80px;
+  bottom:0;
+  width: 100%;
+  background-image: url('../assets/page-bg.png');
+  background-size: cover;
 }
-

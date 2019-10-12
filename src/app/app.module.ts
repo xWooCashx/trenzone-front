@@ -23,6 +23,8 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { UserComponent } from './auth/components/user/user.component';
 import { PmComponent } from './auth/components/pm/pm.component';
 import { AdminComponent } from './auth/components/admin/admin.component';
+import { NewTrainingComponent } from './pages/new-training/new-training.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { AdminComponent } from './auth/components/admin/admin.component';
     UserComponent,
     PmComponent,
     AdminComponent,
+    NewTrainingComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { AdminComponent } from './auth/components/admin/admin.component';
     MatFormFieldModule,
     MatInputModule,
     NgbModule,
-    MatTableModule
+    MatTableModule,
+    DragDropModule
 
   ],
   providers: [TrainingService],

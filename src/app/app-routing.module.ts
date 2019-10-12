@@ -7,6 +7,7 @@ import {ExercisesListComponent} from './exercises-list/exercises-list.component'
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './auth/components/login/login.component';
 import {RegisterComponent} from './auth/components/register/register.component';
+import {NewTrainingComponent} from './pages/new-training/new-training.component';
 
 const routes: Routes = [
   {path: 'training', component: TrainingListComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'auth/login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
+  {path: 'new-training', component: NewTrainingComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
