@@ -23,6 +23,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { UserComponent } from './auth/components/user/user.component';
 import { PmComponent } from './auth/components/pm/pm.component';
 import { AdminComponent } from './auth/components/admin/admin.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { AdminComponent } from './auth/components/admin/admin.component';
     MatTableModule
 
   ],
-  providers: [TrainingService],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
