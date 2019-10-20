@@ -1,0 +1,43 @@
+<mat-card class="example-card">
+  <mat-card-header class="card-header">
+    <!--    <div mat-card-avatar class="example-header-image"></div>-->
+    <div>
+      <mat-card-title>{{training.name}}</mat-card-title>
+      <mat-card-subtitle>{{training.author.firstName + ' ' + training.author.lastName}}</mat-card-subtitle>
+    </div>
+    <div>
+      <button mat-raised-button color="accent">Activate</button>
+      <button mat-raised-button color="primary" (click)="toggleEditing()" *ngIf="!editable">Edit</button>
+      <button mat-raised-button color="primary" (click)="toggleEditing()" *ngIf="editable">Save</button>
+    </div>
+  </mat-card-header>
+  <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+  <mat-card-content>
+    <p>
+      {{training.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button>Activate</button>
+    <!--    <button mat-button>SHARE</button>-->
+  </mat-card-actions>
+</mat-card>
+<!--<form class="training-details">-->
+<!--  <table>-->
+<!--    <tr></tr>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Company (disabled)" disabled [value]="training.name">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Type</mat-label>-->
+<!--      <mat-select [value]="training.type">-->
+<!--        <mat-option *ngFor="let type of types" >-->
+<!--          {{type}}-->
+<!--        </mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <textarea matInput placeholder="Description">{{training.description}}</textarea>-->
+<!--    </mat-form-field>-->
+<!--  </table>-->
+<!--</form>-->
