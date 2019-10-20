@@ -1,18 +1,51 @@
-<div class="details">
-  <app-training-details [training]="training"></app-training-details>
-</div>
+<mat-tab-group class="details">
+  <mat-tab label="Details">
+    <ng-template matTabContent>
+      <app-training-details [training]="training" [editable]="editable"
+                            (editRequest)="toggleEdit()"></app-training-details>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Comments">
+    <ng-template matTabContent> Content 2
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Subscribers">
+    <ng-template matTabContent>Content 3
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
 <div cdkDropListGroup class="activities-table">
   <div class="example-container" *ngFor="let item of activities | keyvalue">
-    <h2>{{days[item.key]}}</h2>
+    <table>
+      <tr>
+        <th>
+          <mat-icon class="day-button" (click)="delete(item.key)" *ngIf="editable">delete</mat-icon>
+        </th>
+        <th>
+          <h2>{{item.key}}</h2></th>
+        <th>
+          <mat-icon class="day-button" (click)="addActivity(item.key)" *ngIf="editable">add_circle</mat-icon>
+        </th>
+      </tr>
+    </table>
     <div
       cdkDropList
       [cdkDropListData]="item.value"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let activity of item.value" cdkDrag>
-        <app-activity-info [activity]="activity"></app-activity-info>
+      <div class="example-box" *ngFor="let activity of item.value;" cdkDrag
+           [style.cursor]="editable ? 'move' : ''"
+           [cdkDragDisabled]="!editable">
+        <app-activity-info [activity]="activity" [editable]="editable"></app-activity-info>
       </div>
     </div>
   </div>
+  <div class="example-container new-day-container" *ngIf="activities.size < 7 && editable">
+    <span (click)="addNewDay()">
+      <mat-icon class="new-button">add_box</mat-icon>
+    </span>
+  </div>
 </div>
+
 

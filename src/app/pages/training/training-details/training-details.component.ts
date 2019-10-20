@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Training} from '../../../class/training';
 
 @Component({
@@ -9,11 +9,18 @@ import {Training} from '../../../class/training';
 export class TrainingDetailsComponent implements OnInit {
   @Input()
   training: Training;
+  @Input()
+  editable: boolean;
+  types: string[] = ['Beginner', 'Advanced'];
+  @Output() editRequest = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log('desc:', this.training.description);
   }
-
+  toggleEditing() {
+    this.editRequest.emit();
+  }
 }
