@@ -74,7 +74,7 @@ import { ActivitiesSetComponent } from './pages/training/activities-set/activiti
     MatCardModule
 
   ],
-  providers: [TrainingService],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -7,9 +7,9 @@ import {Observable} from 'rxjs';
 })
 export class UserService {
 
-  private userUrl = 'https://trenzone-server.herokuapp.com/api/test/user';
-  private pmUrl = 'https://trenzone-server.herokuapp.com/api/test/pm';
-  private adminUrl = 'https://trenzone-server.herokuapp.com/api/test/admin';
+  private userUrl = 'https://trenzone-server.herokuapp.com/test/user';
+  private pmUrl = 'https://trenzone-server.herokuapp.com/test/pm';
+  private adminUrl = 'https://trenzone-server.herokuapp.com/test/admin';
 
   constructor(private http: HttpClient) {
   }
