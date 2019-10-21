@@ -33,6 +33,7 @@ import { TrainingComponent } from './pages/training/training.component';
 import { TrainingDetailsComponent } from './pages/training/training-details/training-details.component';
 import { ActivityDetailsDialogComponent } from './pages/training/activity-info/activity-details-dialog/activity-details-dialog.component';
 import { ActivitiesSetComponent } from './pages/training/activities-set/activities-set.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [

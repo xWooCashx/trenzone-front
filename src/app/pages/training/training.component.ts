@@ -12,7 +12,7 @@ import {Author} from '../../class/author';
   styleUrls: ['./training.component.css']
 })
 export class TrainingComponent implements OnInit {
-  editable = true;
+  editable = false;
   days: string[] = ['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   training: Training;
   author: Author;
