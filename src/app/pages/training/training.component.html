@@ -1,3 +1,4 @@
+
 <mat-tab-group class="details">
   <mat-tab label="Details">
     <ng-template matTabContent>
@@ -34,10 +35,10 @@
       [cdkDropListData]="item.value"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let activity of item.value;" cdkDrag
+      <div class="example-box" *ngFor="let activity of item.value;let i = index;" cdkDrag
            [style.cursor]="editable ? 'move' : ''"
            [cdkDragDisabled]="!editable">
-        <app-activity-info [activity]="activity" [editable]="editable"></app-activity-info>
+        <app-activity-info [activity]="activity" [editable]="editable" (removeActivity)="removeActivity(item.value,i)"></app-activity-info>
       </div>
     </div>
   </div>

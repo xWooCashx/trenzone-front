@@ -106,4 +106,14 @@ export class TrainingComponent implements OnInit {
   toggleEdit() {
     this.editable = !this.editable;
   }
+
+  removeActivity(day, index: number) {
+    console.log('day:', day);
+    console.log('index:', index);
+    if (index === 0) {
+      day.shift();
+    } else {
+      day.splice(index, index);
+    }
+  }
 }

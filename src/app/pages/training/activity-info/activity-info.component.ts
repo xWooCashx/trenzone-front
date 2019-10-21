@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Activity, ActivityInterface} from '../../../class/activity';
 import {MatDialog} from '@angular/material';
 import {ActivityDetailsDialogComponent} from './activity-details-dialog/activity-details-dialog.component';
@@ -23,6 +23,7 @@ export class ActivityInfoComponent implements OnInit {
   activity: Activity;
   @Input()
   editable;
+  @Output() removeActivity = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) {
   }
@@ -50,5 +51,9 @@ export class ActivityInfoComponent implements OnInit {
         this.activity.unit = result.unit;
       });
     }
+  }
+
+  remove() {
+    this.removeActivity.emit();
   }
 }

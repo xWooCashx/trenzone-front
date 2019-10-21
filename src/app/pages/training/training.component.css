@@ -1,6 +1,7 @@
 .details {
   float: left;
   width: 30%;
+  background-color: lightgoldenrodyellow;
 }
 
 .activities-table {
@@ -20,6 +21,7 @@
   display: inline-block;
   font-size: 1vh;
   text-align: center;
+
 }
 
 .example-list {
@@ -88,3 +90,4 @@
   cursor: pointer;
   font-size: 50px;
 }
+

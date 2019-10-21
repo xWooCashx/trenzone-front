@@ -1,0 +1,13 @@
+#delete-icon {
+  /*display: none;*/
+  /*visibility:hidden;*/
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+}
+
+
+div:hover #delete-icon {
+  /*display: inline;*/
+  /*visibility: visible;*/
+  opacity: 1;
+}
