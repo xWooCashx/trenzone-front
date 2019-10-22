@@ -2,18 +2,6 @@
   <a class="navbar-brand TZ" routerLink="/">TZ</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a routerLink="/training" class="btn btn-info">List of Trenings</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/addtraining" class="btn btn-info">Add Trening</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/newaddtraining" class="btn btn-info">New Add Training</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/exercise" class="btn btn-info">Available Exercises</a>
-      </li>
       <li *ngIf="authority === 'user'" class="nav-item">
         <a class="btn btn-info" routerLink="/user">User Board</a>
       </li>
