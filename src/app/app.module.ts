@@ -20,6 +20,7 @@ import { PmComponent } from './auth/components/pm/pm.component';
 import { AdminComponent } from './auth/components/admin/admin.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 import { TrainingsListComponent } from './pages/trainings-list/trainings-list.component';
+import { TrainingSearchItemComponent } from './pages/trainings-list/training-search-item/training-search-item.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TrainingsListComponent } from './pages/trainings-list/trainings-list.co
     PmComponent,
     AdminComponent,
     TrainingsListComponent,
+    TrainingSearchItemComponent,
   ],
   imports: [
     BrowserModule,

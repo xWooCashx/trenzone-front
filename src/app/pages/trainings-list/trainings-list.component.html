@@ -1,4 +1,12 @@
 <div class="list-container">
   <div class="search-bar">Search</div>
-  <div class="results-bar">Results</div>
+  <div class="results-bar">
+    <table>
+      <tr *ngFor="let element of trainingsList">
+        <td>
+          <app-training-search-item [training]="element"></app-training-search-item>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
