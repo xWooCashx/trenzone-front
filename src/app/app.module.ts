@@ -21,6 +21,7 @@ import { AdminComponent } from './auth/components/admin/admin.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 import { TrainingsListComponent } from './pages/trainings-list/trainings-list.component';
 import { TrainingSearchItemComponent } from './pages/trainings-list/training-search-item/training-search-item.component';
+import { TrainingsSearchPanelComponent } from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TrainingSearchItemComponent } from './pages/trainings-list/training-sea
     AdminComponent,
     TrainingsListComponent,
     TrainingSearchItemComponent,
+    TrainingsSearchPanelComponent,
   ],
   imports: [
     BrowserModule,
