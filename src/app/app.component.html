@@ -2,7 +2,10 @@
   <a class="navbar-brand TZ" routerLink="/">TZ</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
+        <a routerLink="/training-creator" class="btn btn-info">New Training</a>
+      </li>
+      <li class="nav-item">
         <a routerLink="/trainings" class="btn btn-info">List of Trenings</a>
       </li>
       <li *ngIf="authority === 'user'" class="nav-item">
