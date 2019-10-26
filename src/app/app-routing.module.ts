@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'auth/login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'training-creator', component: TrainingComponent},
+  {path: 'training/:id', component: TrainingComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
