@@ -1,0 +1,8 @@
+.dialog_container {
+  text-align: center;
+  padding: auto;
+  width: 100%;
+}
+.dialog_container input{
+  width: 100%;
+}

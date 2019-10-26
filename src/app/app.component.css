@@ -11,6 +11,7 @@ li {
   position: relative;
   border: 5px;
 }
+
 .allnavbar {
   position: fixed;
   z-index: 999;
