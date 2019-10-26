@@ -14,15 +14,6 @@
       <li class="nav-item">
         <a routerLink="/exercise" class="btn btn-info">Available Exercises</a>
       </li>
-      <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="btn btn-info" routerLink="/user">User Board</a>
-      </li>
-      <li *ngIf="authority === 'admin'" class="nav-item">
-        <a class="btn btn-info" routerLink="/admin">Admin Board</a>
-      </li>
-      <li *ngIf="authority === 'pm'" class="nav-item">
-        <a class="btn btn-info" routerLink="/pm">PM Board</a>
-      </li>
       <li *ngIf="!authority" class="nav-item">
         <a class="nav-link" routerLink="/auth/login">Login</a>
       </li>
