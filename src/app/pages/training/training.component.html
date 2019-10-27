@@ -1,4 +1,11 @@
-
+<div *ngIf="loading" class="overlay-spinner">
+  <mat-progress-spinner
+    class="spinner"
+    color="primary"
+    mode="indeterminate"
+  >
+  </mat-progress-spinner>
+</div>
 <mat-tab-group class="details">
   <mat-tab label="Details">
     <ng-template matTabContent>
@@ -38,7 +45,8 @@
       <div class="example-box" *ngFor="let activity of item.value;let i = index;" cdkDrag
            [style.cursor]="editable ? 'move' : ''"
            [cdkDragDisabled]="!editable">
-        <app-activity-info [activity]="activity" [editable]="editable" (removeActivity)="removeActivity(item.value,i)"></app-activity-info>
+        <app-activity-info [activity]="activity" [editable]="editable"
+                           (removeActivity)="removeActivity(item.value,i)"></app-activity-info>
       </div>
     </div>
   </div>

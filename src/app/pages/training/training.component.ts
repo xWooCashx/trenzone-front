@@ -5,6 +5,9 @@ import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@a
 import {MatDialog, MatInput} from '@angular/material';
 import {ActivityDetailsDialogComponent} from './activity-info/activity-details-dialog/activity-details-dialog.component';
 import {Author} from '../../class/author';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {TrainingService} from '../../service/training.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-training',
@@ -13,6 +16,7 @@ import {Author} from '../../class/author';
 })
 export class TrainingComponent implements OnInit {
   editable = false;
+  loading = false;
   days: string[] = ['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   training: Training;
   author: Author;
@@ -23,12 +27,13 @@ export class TrainingComponent implements OnInit {
   editingDay = '';
   newActivity: Activity;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private route: ActivatedRoute,
+              private router: Router, private trainingService: TrainingService) {
     this.author = new Author();
     this.author.firstName = 'Joe';
     this.author.lastName = 'Doe';
     this.training = new Training();
-    this.training.author = this.author;
+    this.training.username = this.author.firstName;
     this.training.id = '123';
     this.training.name = 'Test1';
     this.training.description = 'Testj  ore ipsumsssssssssssssssssss' +
@@ -56,7 +61,15 @@ export class TrainingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.activities);
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log('id:' + id);
+    if (id) {
+      this.loading = true;
+      this.trainingService.getTraining(id).subscribe(value => {
+        this.training = value;
+        this.loading = false;
+      });
+    }
   }
 
   drop(event: CdkDragDrop<Activity[]>) {

@@ -16,7 +16,7 @@ import {
   MatInputModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule
+  MatTableModule, MatTabsModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -28,14 +28,14 @@ import {PmComponent} from './auth/components/pm/pm.component';
 import {AdminComponent} from './auth/components/admin/admin.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ActivityInfoComponent} from './pages/training/activity-info/activity-info.component';
-import { TrainingComponent } from './pages/training/training.component';
-import { TrainingDetailsComponent } from './pages/training/training-details/training-details.component';
-import { ActivityDetailsDialogComponent } from './pages/training/activity-info/activity-details-dialog/activity-details-dialog.component';
-import { ActivitiesSetComponent } from './pages/training/activities-set/activities-set.component';
+import {TrainingComponent} from './pages/training/training.component';
+import {TrainingDetailsComponent} from './pages/training/training-details/training-details.component';
+import {ActivityDetailsDialogComponent} from './pages/training/activity-info/activity-details-dialog/activity-details-dialog.component';
+import {ActivitiesSetComponent} from './pages/training/activities-set/activities-set.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor.service';
-import { TrainingsListComponent } from './pages/trainings-list/trainings-list.component';
-import { TrainingSearchItemComponent } from './pages/trainings-list/training-search-item/training-search-item.component';
-import { TrainingsSearchPanelComponent } from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
+import {TrainingsListComponent} from './pages/trainings-list/trainings-list.component';
+import {TrainingSearchItemComponent} from './pages/trainings-list/training-search-item/training-search-item.component';
+import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,8 @@ import { TrainingsSearchPanelComponent } from './pages/trainings-list/trainings-
     MatSelectModule,
     MatDialogModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
 
   ],
   providers: [httpInterceptorProviders],

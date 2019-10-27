@@ -7,7 +7,10 @@ export class Training {
   name: string;
   description: string;
   activities: Activity[];
-  author: Author;
-  createDate: Date;
-  type: string;
+  username: string;
+  date: Date;
+  difficulty: string;
+  tags: string[];
+  roles: string[];
+  rate: number;
 }

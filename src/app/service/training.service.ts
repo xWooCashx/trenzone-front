@@ -25,6 +25,10 @@ export class TrainingService {
       this.addParams(new Map<string, string>().set('size', pageSize).set('page', pageNumber)));
   }
 
+  public getTraining(trainingID): Observable<Training> {
+    return this.http.get<Training>(this.trainingUrl + '/' + trainingID);
+  }
+
   public save(training: Training) {
     return this.http.post<Training>(this.trainingUrl, training);
   }

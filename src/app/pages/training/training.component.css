@@ -91,3 +91,17 @@
   font-size: 50px;
 }
 
+.overlay-spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  alignment: center;
+  background: rgba(50, 50, 50, .2);
+}
+
+.spinner {
+  position: relative;
+  left: 50%;
+  top: 50%;
+}
