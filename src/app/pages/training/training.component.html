@@ -7,17 +7,17 @@
   </mat-progress-spinner>
 </div>
 <mat-tab-group class="details">
-  <mat-tab label="Details">
+  <mat-tab label="Details" >
     <ng-template matTabContent>
       <app-training-details [training]="training" [editable]="editable"
                             (editRequest)="toggleEdit()"></app-training-details>
     </ng-template>
   </mat-tab>
-  <mat-tab label="Comments">
-    <ng-template matTabContent> Content 2
+  <mat-tab label="Comments" *ngIf="authenticationService.isLogged()">
+    <ng-template matTabContent> <app-training-comments [trainingId]="training.id"></app-training-comments>
     </ng-template>
   </mat-tab>
-  <mat-tab label="Subscribers">
+  <mat-tab label="Subscribers" *ngIf="authenticationService.isLogged()">
     <ng-template matTabContent>Content 3
     </ng-template>
   </mat-tab>

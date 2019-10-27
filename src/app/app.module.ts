@@ -16,7 +16,7 @@ import {
   MatInputModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule, MatProgressSpinnerModule
+  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -36,6 +36,8 @@ import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 import {TrainingsListComponent} from './pages/trainings-list/trainings-list.component';
 import {TrainingSearchItemComponent} from './pages/trainings-list/training-search-item/training-search-item.component';
 import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
+import { UserBoardComponent } from './pages/user-board/user-board.component';
+import {TrainingCommentsComponent} from './pages/training/training-comments/training-comments.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-se
     TrainingDetailsComponent,
     ActivityDetailsDialogComponent,
     ActivitiesSetComponent,
+    UserBoardComponent,
+    TrainingCommentsComponent,
   ],
   entryComponents: [ActivityDetailsDialogComponent],
   imports: [
@@ -78,6 +82,7 @@ import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-se
     MatTabsModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatListModule,
 
   ],
   providers: [httpInterceptorProviders],

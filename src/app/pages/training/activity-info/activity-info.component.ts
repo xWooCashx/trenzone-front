@@ -36,7 +36,7 @@ export class ActivityInfoComponent implements OnInit {
       const dialogRef = this.dialog.open(ActivityDetailsDialogComponent, {
         data: {
           id: this.activity.id,
-          quantity: this.activity.quantity,
+          quantity: this.activity.quality,
           series: this.activity.series,
           unit: this.activity.unit
         },
@@ -46,7 +46,7 @@ export class ActivityInfoComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         this.activity.id = result.id;
-        this.activity.quantity = result.quantity;
+        this.activity.quality = result.quantity;
         this.activity.series = result.series;
         this.activity.unit = result.unit;
       });

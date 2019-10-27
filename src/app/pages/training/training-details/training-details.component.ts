@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Training} from '../../../class/training';
+import {ExerciseService} from '../../../service/exercise.service';
+import {AuthenticationService} from '../../../service/authentication.service';
+import {TrainingService} from '../../../service/training.service';
 
 @Component({
   selector: 'app-training-details',
@@ -9,17 +12,22 @@ import {Training} from '../../../class/training';
 export class TrainingDetailsComponent implements OnInit {
   @Input()
   training: Training;
+  comments
   @Input()
   editable: boolean;
+  isLogged: boolean;
+  isOwner: boolean;
   types: string[] = ['Beginner', 'Advanced'];
   @Output() editRequest = new EventEmitter<boolean>();
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-    console.log('desc:', this.training.description);
+    this.isLogged = this.authenticationService.isLogged();
+    this.isOwner = this.authenticationService.getUsername() === this.training.username;
   }
+
   toggleEditing() {
     this.editRequest.emit();
   }

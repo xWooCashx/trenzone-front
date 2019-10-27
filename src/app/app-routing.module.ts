@@ -6,10 +6,12 @@ import {LoginComponent} from './auth/components/login/login.component';
 import {RegisterComponent} from './auth/components/register/register.component';
 import {TrainingsListComponent} from './pages/trainings-list/trainings-list.component';
 import {TrainingComponent} from './pages/training/training.component';
+import {UserBoardComponent} from './pages/user-board/user-board.component';
 
 const routes: Routes = [
   {path: 'exercise', component: ExercisesListComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'user', component: UserBoardComponent},
   {path: 'auth/login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'training-creator', component: TrainingComponent},

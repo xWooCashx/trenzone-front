@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Training} from '../class/training';
 import {Pageable, TrainingsSearchResult} from '../class/TrainingsSearchResult';
+import {Comment} from '../class/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {Pageable, TrainingsSearchResult} from '../class/TrainingsSearchResult';
 export class TrainingService {
 
   private trainingUrl: string;
+  private commentsUrl: string;
   private paramsAsString: string;
 
   constructor(private http: HttpClient) {
@@ -40,4 +42,5 @@ export class TrainingService {
     });
     return this.paramsAsString;
   }
+
 }

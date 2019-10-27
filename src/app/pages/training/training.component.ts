@@ -9,6 +9,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {TrainingService} from '../../service/training.service';
 import {switchMap} from 'rxjs/operators';
 import {ExerciseService} from '../../service/exercise.service';
+import {AuthenticationService} from '../../service/authentication.service';
 
 @Component({
   selector: 'app-training',
@@ -29,7 +30,8 @@ export class TrainingComponent implements OnInit {
   newActivity: Activity;
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
-              private router: Router, private trainingService: TrainingService, private exerciseService: ExerciseService) {
+              private router: Router, private trainingService: TrainingService,
+              private exerciseService: ExerciseService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -122,7 +124,7 @@ export class TrainingComponent implements OnInit {
     this.author.firstName = 'Joe';
     this.author.lastName = 'Doe';
     this.training = new Training();
-    this.training.username = this.author.firstName;
+    this.training.username = this.authenticationService.getUsername();
     this.training.id = '123';
     this.training.name = 'Test1';
     this.training.description = 'Testj  ore ipsumsssssssssssssssssss' +
