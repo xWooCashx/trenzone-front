@@ -8,7 +8,7 @@ import {Content, Pageable} from '../../class/TrainingsSearchResult';
   styleUrls: ['./trainings-list.component.css']
 })
 export class TrainingsListComponent implements OnInit {
-  private trainingsList: Content[];
+  trainingsList: Content[];
   pageSize = 20;
   pageNumber = 0;
   searchOption: Pageable;
