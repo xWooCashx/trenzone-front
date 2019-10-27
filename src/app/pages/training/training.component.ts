@@ -8,6 +8,7 @@ import {Author} from '../../class/author';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {TrainingService} from '../../service/training.service';
 import {switchMap} from 'rxjs/operators';
+import {ExerciseService} from '../../service/exercise.service';
 
 @Component({
   selector: 'app-training',
@@ -28,18 +29,13 @@ export class TrainingComponent implements OnInit {
   newActivity: Activity;
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
-              private router: Router, private trainingService: TrainingService) {
+              private router: Router, private trainingService: TrainingService, private exerciseService: ExerciseService) {
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log('id:' + id);
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.loading = true;
-      this.trainingService.getTraining(id).subscribe(value => {
-        this.training = value;
-        this.loading = false;
-      });
+      this.loadTrainingData(id);
     } else {
       this.loadMockData();
     }
@@ -47,6 +43,7 @@ export class TrainingComponent implements OnInit {
 
   drop(event: CdkDragDrop<Activity[]>) {
     if (event.previousContainer === event.container) {
+      event.container.data[event.currentIndex].sequence = event.currentIndex + '';
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
@@ -54,6 +51,7 @@ export class TrainingComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+    event.container.data[event.currentIndex].sequence = event.currentIndex + '';
   }
 
   addNewDay() {
@@ -90,13 +88,33 @@ export class TrainingComponent implements OnInit {
   }
 
   removeActivity(day, index: number) {
-    console.log('day:', day);
-    console.log('index:', index);
     if (index === 0) {
       day.shift();
     } else {
       day.splice(index, index);
     }
+  }
+
+  loadTrainingData(id) {
+    this.loading = true;
+    this.trainingService.getTraining(id).subscribe(value => {
+        this.training = value;
+        this.exerciseService.getExercises(id).subscribe(value1 => {
+          console.log('value1' + value1);
+          if (value1.length > 0) {
+            this.training.activities = value1;
+            this.mapActivities();
+          }
+          this.loading = false;
+        }, error => {
+          console.log('error');
+          this.loading = false;
+        });
+      }, error => {
+        console.log('error');
+        this.loading = false;
+      }
+    );
   }
 
   loadMockData() {
@@ -119,11 +137,15 @@ export class TrainingComponent implements OnInit {
       new Activity('12553', 3, 5, 'rep', '2'),
       new Activity('112313', 3, 5, 'rep', '2'),
     ];
+    this.mapActivities();
+  }
+
+  mapActivities() {
     this.training.activities.map(x => {
-      if (this.activities.has(x.day)) {
-        this.activities.get(x.day).push(x);
+      if (this.activities.has(x.weekDay)) {
+        this.activities.get(x.weekDay).push(x);
       } else {
-        this.activities.set(x.day, [x]);
+        this.activities.set(x.weekDay, [x]);
       }
     });
   }

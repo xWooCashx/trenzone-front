@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
           this.authority = 'pm';
           return false;
         }
-
         this.authority = 'user';
         return true;
       });

@@ -1,6 +1,10 @@
 export class Exercise {
   id: string;
+  trainingId: string;
   name: string;
-  description: string;
-  type: string;
+  unit: string;
+  weekDay: string;
+  quality: string;
+  series: number;
+  sequence: string;
 }
