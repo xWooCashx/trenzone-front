@@ -10,7 +10,7 @@ import {UserBoardComponent} from './pages/user-board/user-board.component';
 
 const routes: Routes = [
   {path: 'exercise', component: ExercisesListComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: UserBoardComponent},
   {path: 'user', component: UserBoardComponent},
   {path: 'auth/login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},

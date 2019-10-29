@@ -16,7 +16,7 @@ import {
   MatInputModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule
+  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule, MatGridListModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -38,6 +38,9 @@ import {TrainingSearchItemComponent} from './pages/trainings-list/training-searc
 import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
 import { UserBoardComponent } from './pages/user-board/user-board.component';
 import {TrainingCommentsComponent} from './pages/training/training-comments/training-comments.component';
+import { UserDetailsComponent } from './pages/user-board/user-details/user-details.component';
+import { UserTrainingsComponent } from './pages/user-board/user-trainings/user-trainings.component';
+import { UserAchievementsComponent } from './pages/user-board/user-achievements/user-achievements.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import {TrainingCommentsComponent} from './pages/training/training-comments/trai
     ActivitiesSetComponent,
     UserBoardComponent,
     TrainingCommentsComponent,
+    UserDetailsComponent,
+    UserTrainingsComponent,
+    UserAchievementsComponent,
   ],
   entryComponents: [ActivityDetailsDialogComponent],
   imports: [
@@ -83,6 +89,7 @@ import {TrainingCommentsComponent} from './pages/training/training-comments/trai
     MatCardModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatGridListModule,
 
   ],
   providers: [httpInterceptorProviders],

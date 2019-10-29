@@ -24,8 +24,8 @@ export class ExerciseService {
     return this.http.get<Activity[]>(this.exerciseUrl + '?training=' + trainingId);
   }
 
-  public save(exercise: Exercise) {
-    return this.http.post<Exercise>(this.exerciseUrl, exercise);
+  public save(exercises: Activity[]): Observable<Activity[]>{
+    return this.http.post<Activity[]>(this.exerciseUrl, exercises);
   }
 
   public delete(id: string) {

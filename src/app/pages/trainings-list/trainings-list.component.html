@@ -3,6 +3,8 @@
     <app-trainings-search-panel></app-trainings-search-panel>
   </div>
   <div class="results-bar">
+    <mat-card class="example-card">
+      <mat-card-content>
     <table class="results">
       <tr *ngFor="let element of trainingsList">
         <td >
@@ -10,5 +12,7 @@
         </td>
       </tr>
     </table>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

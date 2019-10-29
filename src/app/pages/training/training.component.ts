@@ -7,7 +7,7 @@ import {ActivityDetailsDialogComponent} from './activity-info/activity-details-d
 import {Author} from '../../class/author';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {TrainingService} from '../../service/training.service';
-import {switchMap} from 'rxjs/operators';
+import {subscribeOn, switchMap} from 'rxjs/operators';
 import {ExerciseService} from '../../service/exercise.service';
 import {AuthenticationService} from '../../service/authentication.service';
 
@@ -87,6 +87,17 @@ export class TrainingComponent implements OnInit {
 
   toggleEdit() {
     this.editable = !this.editable;
+    if (!this.editable) {
+      this.loading = true;
+      this.trainingService.save(this.training).subscribe(value => {
+        console.log('respoinse saivng tra:', value);
+        this.training.id = value.id;
+        this.exerciseService.save(this.training.activities).subscribe(value1 => {
+          console.log('respoinse saivng exc:', value1);
+          this.loading = false;
+        },error => this.loading = false);
+      });
+    }
   }
 
   removeActivity(day, index: number) {

@@ -4,15 +4,8 @@
 <!--    <u>{{training.tags}}</u>-->
 <!--  </div>-->
 <!--</div>-->
-<mat-card class="example-card">
-  <mat-card-header class="card-header">
-    <mat-card-title>
-      <a [routerLink]="['/training', training.id]">{{training.name}}</a>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{training.tags}}
-    </p>
-  </mat-card-content>
-</mat-card>
+
+<h4>
+  <a style="text-decoration: none;color:black" [routerLink]="['/training', training.id]">{{training.name}}</a>
+</h4><span>{{training.tags}}</span>
+<mat-divider></mat-divider>

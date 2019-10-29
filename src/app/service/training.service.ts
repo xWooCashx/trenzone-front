@@ -31,7 +31,8 @@ export class TrainingService {
     return this.http.get<Training>(this.trainingUrl + '/' + trainingID);
   }
 
-  public save(training: Training) {
+  public save(training: Training): Observable<Training> {
+    console.log('training:', JSON.stringify(training));
     return this.http.post<Training>(this.trainingUrl, training);
   }
 
