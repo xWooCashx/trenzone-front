@@ -7,6 +7,12 @@
 
 .comments {
   position: relative;
+  bottom: 0;
+  top: 0;
+}
+
+.comments-list {
+  position: relative;
   top: 0;
   max-height: 80%;
 }

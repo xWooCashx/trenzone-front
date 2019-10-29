@@ -3,9 +3,9 @@
     <app-trainings-search-panel></app-trainings-search-panel>
   </div>
   <div class="results-bar">
-    <table>
+    <table class="results">
       <tr *ngFor="let element of trainingsList">
-        <td>
+        <td >
           <app-training-search-item [training]="element"></app-training-search-item>
         </td>
       </tr>

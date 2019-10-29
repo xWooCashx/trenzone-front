@@ -1,4 +1,5 @@
-<mat-list class="comments">
+<div class="comments">
+<mat-list class="comments-list">
   <mat-list-item *ngFor="let c of comments">
     <span mat-line>
       {{c.username}}   {{c.date}}
@@ -12,4 +13,5 @@
       <textarea matInput placeholder="Address" [(ngModel)]="newComment.content"></textarea>
     </mat-form-field>
     <button mat-flat-button color="accent" (click)="sendComment()">Send</button>
+</div>
 </div>
