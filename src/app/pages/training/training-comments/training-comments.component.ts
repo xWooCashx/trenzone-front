@@ -12,7 +12,7 @@ import {AuthenticationService} from '../../../service/authentication.service';
 export class TrainingCommentsComponent implements OnInit {
   @Input()
   trainingId: string;
-  private comments: Comment[];
+  public comments: Comment[];
   public newComment;
 
   constructor(private service: CommentService, private authenticationService: AuthenticationService) {
