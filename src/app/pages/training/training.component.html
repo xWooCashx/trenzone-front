@@ -6,22 +6,42 @@
   >
   </mat-progress-spinner>
 </div>
-<mat-tab-group class="details">
-  <mat-tab label="Details" >
-    <ng-template matTabContent>
-      <app-training-details [training]="training" [editable]="editable"
-                            (editRequest)="toggleEdit()"></app-training-details>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Comments" *ngIf="authenticationService.isLogged()">
-    <ng-template matTabContent> <app-training-comments [trainingId]="training.id"></app-training-comments>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Subscribers" *ngIf="authenticationService.isLogged()">
-    <ng-template matTabContent>Content 3
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+<mat-card class="details">
+  <mat-card-actions >
+    <button mat-raised-button color="accent" *ngIf="authenticationService.isLogged() && !editable">Activate</button>
+    <button mat-raised-button color="primary" (click)="toggleEdit()"  *ngIf="!editable && authenticationService.getUsername() === training.username">Edit</button>
+    <button mat-raised-button color="primary" (click)="toggleEdit()" *ngIf="editable &&  authenticationService.getUsername() === training.username">Save</button>
+  </mat-card-actions>
+  <mat-card-header class="card-header">
+    <!--    <div mat-card-avatar class="example-header-image"></div>-->
+    <div>
+      <mat-card-title>{{training.name}}</mat-card-title>
+      <mat-card-subtitle>{{training.username}}</mat-card-subtitle>
+      <!--      <mat-card-subtitle>{{training.author.firstName + ' ' + training.author.lastName}}</mat-card-subtitle>-->
+    </div>
+
+  </mat-card-header>
+  <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Details" >
+        <ng-template matTabContent>
+          <app-training-details [training]="training" [editable]="editable"
+                                (editRequest)="toggleEdit()"></app-training-details>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Comments" *ngIf="authenticationService.isLogged() && training.id">
+        <ng-template matTabContent> <app-training-comments [trainingId]="training.id"></app-training-comments>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Subscribers" *ngIf="authenticationService.isLogged() && training.id">
+        <ng-template matTabContent>Content 3
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+
 
 <div cdkDropListGroup class="activities-table">
   <div class="example-container" *ngFor="let item of activities | keyvalue">

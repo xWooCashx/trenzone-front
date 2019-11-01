@@ -15,17 +15,16 @@ export class ExerciseService {
     this.exerciseUrl = 'https://trenzone-server.herokuapp.com/exercises';
   }
 
-  public findAll(): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(this.exerciseUrl);
-  }
-
   public getExercises(trainingId): Observable<Activity[]> {
     console.log(this.exerciseUrl + '?training=' + trainingId);
     return this.http.get<Activity[]>(this.exerciseUrl + '?training=' + trainingId);
   }
 
-  public save(exercises: Activity[]): Observable<Activity[]>{
-    return this.http.post<Activity[]>(this.exerciseUrl, exercises);
+  public save(exercises: Activity[], trainingId): Observable<Activity[]> {
+    console.log('saving excercies');
+    console.log('excercises:', JSON.stringify(exercises));
+    console.log('trainingId:', trainingId);
+    return this.http.post<Activity[]>(this.exerciseUrl + '/' + trainingId, exercises);
   }
 
   public delete(id: string) {

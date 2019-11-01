@@ -45,7 +45,7 @@ export class TrainingComponent implements OnInit {
 
   drop(event: CdkDragDrop<Activity[]>) {
     if (event.previousContainer === event.container) {
-      event.container.data[event.currentIndex].sequence = event.currentIndex + '';
+      // event.container.data[event.currentIndex].sequence = event.currentIndex;
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
@@ -53,7 +53,7 @@ export class TrainingComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-    event.container.data[event.currentIndex].sequence = event.currentIndex + '';
+    // event.container.data[event.currentIndex].sequence = event.currentIndex + '';
   }
 
   addNewDay() {
@@ -88,16 +88,21 @@ export class TrainingComponent implements OnInit {
   toggleEdit() {
     this.editable = !this.editable;
     if (!this.editable) {
-      this.loading = true;
-      this.trainingService.save(this.training).subscribe(value => {
-        console.log('respoinse saivng tra:', value);
-        this.training.id = value.id;
-        this.exerciseService.save(this.training.activities).subscribe(value1 => {
-          console.log('respoinse saivng exc:', value1);
-          this.loading = false;
-        },error => this.loading = false);
-      });
+      this.save();
     }
+  }
+
+  private save() {
+    this.loading = true;
+    this.trainingService.save(this.training).subscribe(value => {
+      console.log('respoinse saivng tra:', value);
+      this.training = value;
+      this.exerciseService.save(this.toListActivities(), this.training.id).subscribe(value1 => {
+        console.log('respoinse saivng exc:', value1);
+        this.training.activities = value1;
+        this.loading = false;
+      }, error => this.loading = false);
+    });
   }
 
   removeActivity(day, index: number) {
@@ -119,6 +124,8 @@ export class TrainingComponent implements OnInit {
             this.mapActivities();
           }
           this.loading = false;
+          console.log('<=============================>');
+          console.log(JSON.stringify(this.training));
         }, error => {
           console.log('error');
           this.loading = false;
@@ -136,30 +143,44 @@ export class TrainingComponent implements OnInit {
     this.author.lastName = 'Doe';
     this.training = new Training();
     this.training.username = this.authenticationService.getUsername();
-    this.training.id = '123';
-    this.training.name = 'Test1';
+    this.training.name = 'Training' + Math.ceil(Math.random() * 100 % 100);
     this.training.description = 'Testj  ore ipsumsssssssssssssssssss' +
       'Testj  ore ipsumsssssssssssssssssss';
-    this.training.activities = [
-      new Activity('12b1', 3, 5, 'rep', '1'),
-      new Activity('1s31', 3, 5, 'rep', '1'),
-      new Activity('1233', 3, 5, 'rep', '2'),
-      new Activity('1a3', 3, 5, 'rep', '2'),
-      new Activity('1b35', 3, 5, 'rep', '3'),
-      new Activity('1a5', 3, 5, 'rep', '3'),
-      new Activity('12553', 3, 5, 'rep', '2'),
-      new Activity('112313', 3, 5, 'rep', '2'),
-    ];
+    this.training.activities = [];
+    // this.training.activities = [
+    //   new Activity('12b1', 3, 5, 'rep', '1'),
+    //   new Activity('1s31', 3, 5, 'rep', '1'),
+    //   new Activity('1233', 3, 5, 'rep', '2'),
+    //   new Activity('1a3', 3, 5, 'rep', '2'),
+    //   new Activity('1b35', 3, 5, 'rep', '3'),
+    //   new Activity('1a5', 3, 5, 'rep', '3'),
+    //   new Activity('12553', 3, 5, 'rep', '2'),
+    //   new Activity('112313', 3, 5, 'rep', '2'),
+    // ];
     this.mapActivities();
   }
 
   mapActivities() {
     this.training.activities.map(x => {
-      if (this.activities.has(x.weekDay)) {
-        this.activities.get(x.weekDay).push(x);
+      if (this.activities.has(x.day)) {
+        this.activities.get(x.day).push(x);
       } else {
-        this.activities.set(x.weekDay, [x]);
+        this.activities.set(x.day, [x]);
       }
     });
+  }
+
+  toListActivities(): Activity[] {
+    // this.training.activities = [];
+    const listedActivities = [];
+    for (const key of this.activities.keys()) {
+      this.activities.get(key).map((value, index) => {
+        value.day = key;
+        value.sequence = index;
+        listedActivities.push(value);
+      });
+    }
+    console.log('activities:', listedActivities);
+    return listedActivities;
   }
 }

@@ -14,16 +14,16 @@ export class Activity {
   trainingId: string;
   name: string;
   unit: string;
-  weekDay: string;
+  day: string;
   quality: number;
   series: number;
-  sequence: string;
+  sequence: number;
 
-  constructor(id: string, quantity: number, series: number, unit: string, day: string) {
-    this.id = id;
+  constructor(name: string, quantity: number, series: number, unit: string, day: string) {
+    this.name = name;
     this.quality = quantity;
     this.series = series;
     this.unit = unit;
-    this.weekDay = day;
+    this.day = day;
   }
 }

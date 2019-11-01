@@ -12,7 +12,6 @@ import {TrainingService} from '../../../service/training.service';
 export class TrainingDetailsComponent implements OnInit {
   @Input()
   training: Training;
-  comments
   @Input()
   editable: boolean;
   isLogged: boolean;
@@ -25,6 +24,8 @@ export class TrainingDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.isLogged = this.authenticationService.isLogged();
+    console.log(this.authenticationService.getUsername());
+    console.log(this.training.username);
     this.isOwner = this.authenticationService.getUsername() === this.training.username;
   }
 

@@ -10,27 +10,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ExercisesListComponent implements OnInit {
 
-  viewForm = false;
-  exercises: Exercise[];
-  newExercise: Exercise;
-  headElements = ['Name', 'Type', 'Description', 'Options'];
-
   constructor(private route: ActivatedRoute,
               private router: Router,
               private exerciseService: ExerciseService) {
   }
 
   ngOnInit() {
-    this.newExercise = new Exercise();
-    this.exerciseService.findAll().subscribe(data =>
-      this.exercises = data);
   }
 
-  public delete(id: string) {
-    this.exerciseService.delete(id).subscribe(result => this.ngOnInit());
-  }
-
-  public save() {
-    this.exerciseService.save(this.newExercise).subscribe(result => this.ngOnInit());
-  }
 }
