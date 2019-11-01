@@ -16,7 +16,7 @@ import {
   MatInputModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule, MatGridListModule
+  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule, MatGridListModule, MatChipsModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -90,6 +90,7 @@ import { UserAchievementsComponent } from './pages/user-board/user-achievements/
     MatProgressSpinnerModule,
     MatListModule,
     MatGridListModule,
+    MatChipsModule,
 
   ],
   providers: [httpInterceptorProviders],

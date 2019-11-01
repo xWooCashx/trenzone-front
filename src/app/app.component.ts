@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   private roles: string[];
   public authority: string;
 
-  constructor(private tokenStorage: TokenStorageService, private authenticationService: AuthenticationService) {
+  constructor(public tokenStorage: TokenStorageService, public authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {

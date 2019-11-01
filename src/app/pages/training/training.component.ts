@@ -31,7 +31,7 @@ export class TrainingComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private router: Router, private trainingService: TrainingService,
-              private exerciseService: ExerciseService, private authenticationService: AuthenticationService) {
+              private exerciseService: ExerciseService, public authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
