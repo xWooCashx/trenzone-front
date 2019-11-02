@@ -27,9 +27,19 @@ export class TrainingService {
     return this.http.get<TrainingsSearchResult>(this.trainingUrl);
   }
 
-  public getTrainings(pageSize, pageNumber): Observable<TrainingsSearchResult> {
+  public getTrainings(pageSize, pageNumber, name, tags, difficulty): Observable<TrainingsSearchResult> {
+    const paramsMap = new Map().set('size', pageSize).set('page', pageNumber);
+    if (name) {
+      paramsMap.set('name', name);
+    }
+    if (tags) {
+      paramsMap.set('tags', tags);
+    }
+    if (difficulty) {
+      paramsMap.set('difficulty', difficulty);
+    }
     return this.http.get<TrainingsSearchResult>(this.TRENZONE_URL + this.trainingUrl +
-      this.addParams(new Map<string, string>().set('size', pageSize).set('page', pageNumber)));
+      this.addParams(paramsMap));
   }
 
   public getTraining(trainingID): Observable<Training> {

@@ -1,1 +1,7 @@
-<p>trainings-search-panel works!</p>
+<div class="input-text">
+  <mat-form-field appearance="outline" color="primary">
+    <mat-label>Search for:</mat-label>
+    <input (keydown.enter)="search()" type="search" key matInput [(ngModel)]="text"/>
+    <mat-icon matSuffix style="cursor: pointer" (click)="search()">search</mat-icon>
+  </mat-form-field>
+</div>

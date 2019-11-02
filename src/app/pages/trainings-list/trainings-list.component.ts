@@ -12,11 +12,16 @@ export class TrainingsListComponent implements OnInit {
   pageSize = 20;
   pageNumber = 0;
   searchOption: Pageable;
+  private queryText: string;
+  private tags: string[];
+  private difficulty: string;
+  loading = false;
 
   constructor(private trainingService: TrainingService) {
-    this.trainingService.getTrainings(this.pageSize, this.pageNumber).subscribe(data => {
-      this.trainingsList = data.content;
-    });
+    // this.findResults();
+    this.difficulty = '';
+    this.tags = [];
+    this.queryText = '';
     this.searchOption = new Pageable();
   }
 
@@ -26,4 +31,19 @@ export class TrainingsListComponent implements OnInit {
     this.searchOption.paged = true;
   }
 
+  search($event: string) {
+    console.log($event);
+    this.queryText = $event;
+    this.findResults();
+  }
+
+  findResults() {
+    this.loading = true;
+    this.trainingService.getTrainings(this.pageSize, this.pageNumber, this.queryText
+      , this.tags, this.difficulty
+    ).subscribe(data => {
+      this.trainingsList = data.content;
+      this.loading = false;
+    });
+  }
 }

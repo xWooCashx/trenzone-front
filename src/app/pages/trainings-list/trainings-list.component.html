@@ -1,18 +1,27 @@
 <div class="list-container">
   <div class="search-bar">
-    <app-trainings-search-panel></app-trainings-search-panel>
+    <app-trainings-search-panel (query)="search($event)"></app-trainings-search-panel>
   </div>
   <div class="results-bar">
-    <mat-card class="example-card">
-      <mat-card-content>
-    <table class="results">
-      <tr *ngFor="let element of trainingsList">
-        <td >
-          <app-training-search-item [training]="element"></app-training-search-item>
-        </td>
-      </tr>
-    </table>
-      </mat-card-content>
+
+    <mat-card>
+        <div *ngIf="loading" class="overlay-spinner">
+          <mat-progress-spinner
+            class="spinner"
+            color="primary"
+            mode="indeterminate"
+          >
+          </mat-progress-spinner>
+        </div>
+        <table *ngIf="trainingsList;else noResults" class="results">
+          <tr *ngFor="let element of trainingsList">
+            <td>
+              <app-training-search-item [training]="element"></app-training-search-item>
+            </td>
+          </tr>
+        </table>
+        <ng-template #noResults>No results found</ng-template>
+
     </mat-card>
   </div>
 </div>
