@@ -40,6 +40,7 @@ export class TrainingComponent implements OnInit {
       this.loadTrainingData(id);
     } else {
       this.loadMockData();
+      this.editable = true;
     }
   }
 
@@ -58,10 +59,10 @@ export class TrainingComponent implements OnInit {
 
   addNewDay() {
     let index = 1;
-    while (this.activities.has(index + '')) {
+    while (this.activities.has(index)) {
       index++;
     }
-    this.activities.set(index + '', []);
+    this.activities.set(index, []);
   }
 
   delete(key: string) {
@@ -88,7 +89,11 @@ export class TrainingComponent implements OnInit {
   toggleEdit() {
     this.editable = !this.editable;
     if (!this.editable) {
-      this.save();
+      if (this.training.id) {
+        this.update();
+      } else {
+        this.save();
+      }
     }
   }
 
@@ -97,12 +102,33 @@ export class TrainingComponent implements OnInit {
     this.trainingService.save(this.training).subscribe(value => {
       console.log('respoinse saivng tra:', value);
       this.training = value;
-      this.exerciseService.save(this.toListActivities(), this.training.id).subscribe(value1 => {
-        console.log('respoinse saivng exc:', value1);
-        this.training.activities = value1;
-        this.loading = false;
-      }, error => this.loading = false);
-    });
+      this.saveActivities();
+      this.router.navigateByUrl('/training/' + this.training.id).then(r => {
+      });
+    }, error => this.loading = false);
+  }
+
+  private update() {
+    this.loading = true;
+    this.trainingService.update(this.training).subscribe(value => {
+      console.log('respoinse saivng tra:', value);
+      this.training = value;
+      this.saveActivities();
+    }, error =>
+      this.loading = false);
+  }
+
+  saveActivities() {
+    let acs;
+    if (this.activities.size > 0) {
+      acs = this.toListActivities();
+    } else {
+      acs = [];
+    }
+    this.exerciseService.save(acs, this.training.id).subscribe(value1 => {
+      this.training.activities = value1;
+      this.loading = false;
+    }, error => this.loading = false);
   }
 
   removeActivity(day, index: number) {
@@ -115,6 +141,7 @@ export class TrainingComponent implements OnInit {
 
   loadTrainingData(id) {
     this.loading = true;
+    this.training = new Training();
     this.trainingService.getTraining(id).subscribe(value => {
         this.training = value;
         this.exerciseService.getExercises(id).subscribe(value1 => {
@@ -138,25 +165,11 @@ export class TrainingComponent implements OnInit {
   }
 
   loadMockData() {
-    this.author = new Author();
-    this.author.firstName = 'Joe';
-    this.author.lastName = 'Doe';
     this.training = new Training();
     this.training.username = this.authenticationService.getUsername();
-    this.training.name = 'Training' + Math.ceil(Math.random() * 100 % 100);
-    this.training.description = 'Testj  ore ipsumsssssssssssssssssss' +
-      'Testj  ore ipsumsssssssssssssssssss';
+    this.training.name = 'New Training';
+    this.training.description = 'Training Description';
     this.training.activities = [];
-    // this.training.activities = [
-    //   new Activity('12b1', 3, 5, 'rep', '1'),
-    //   new Activity('1s31', 3, 5, 'rep', '1'),
-    //   new Activity('1233', 3, 5, 'rep', '2'),
-    //   new Activity('1a3', 3, 5, 'rep', '2'),
-    //   new Activity('1b35', 3, 5, 'rep', '3'),
-    //   new Activity('1a5', 3, 5, 'rep', '3'),
-    //   new Activity('12553', 3, 5, 'rep', '2'),
-    //   new Activity('112313', 3, 5, 'rep', '2'),
-    // ];
     this.mapActivities();
   }
 
@@ -182,5 +195,18 @@ export class TrainingComponent implements OnInit {
     }
     console.log('activities:', listedActivities);
     return listedActivities;
+  }
+
+  deleteTraining() {
+    this.trainingService.delete(this.training.id, this.training.username).subscribe(value => {
+      this.router.navigateByUrl('/user').then(r => {
+      });
+    });
+  }
+
+  publish() {
+    this.loading = true;
+    this.trainingService.publish(this.training.id, this.training.username)
+      .subscribe(value => this.loading = false);
   }
 }

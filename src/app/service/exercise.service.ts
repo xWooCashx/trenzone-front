@@ -9,25 +9,23 @@ import {Activity} from '../class/activity';
 })
 export class ExerciseService {
 
-  private exerciseUrl: string;
+  private trainings: string;
+  private exercises: string;
 
   constructor(private http: HttpClient) {
-    this.exerciseUrl = 'https://trenzone-server.herokuapp.com/exercises';
+    this.trainings = 'https://trenzone-server.herokuapp.com/training/';
+    this.exercises = 'exercises';
   }
 
   public getExercises(trainingId): Observable<Activity[]> {
-    console.log(this.exerciseUrl + '?training=' + trainingId);
-    return this.http.get<Activity[]>(this.exerciseUrl + '?training=' + trainingId);
+    console.log('getting activities:', this.trainings + trainingId + '/' + this.exercises);
+    return this.http.get<Activity[]>(this.trainings + trainingId + '/' + this.exercises);
   }
 
   public save(exercises: Activity[], trainingId): Observable<Activity[]> {
     console.log('saving excercies');
     console.log('excercises:', JSON.stringify(exercises));
     console.log('trainingId:', trainingId);
-    return this.http.post<Activity[]>(this.exerciseUrl + '/' + trainingId, exercises);
-  }
-
-  public delete(id: string) {
-    return this.http.delete(this.exerciseUrl + '/' + id);
+    return this.http.post<Activity[]>(this.trainings + trainingId + '/' + this.exercises, exercises);
   }
 }

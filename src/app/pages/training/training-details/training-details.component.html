@@ -1,6 +1,12 @@
+<div style="padding-top: 10px;">
 <mat-chip-list>
   <mat-chip *ngFor="let tag of training.tags">{{tag}}</mat-chip>
 </mat-chip-list>
-    <p>
-      {{training.description}}
-    </p>
+  <p *ngIf="!editable">
+    {{training.description}}
+  </p>
+  <mat-form-field *ngIf="editable"  style="width: 90%;height: 100%">
+  <mat-label>Description</mat-label>
+      <textarea  matInput [(ngModel)]="training.description"></textarea>
+  </mat-form-field>
+</div>
