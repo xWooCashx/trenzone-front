@@ -17,6 +17,7 @@ export class TrainingsListComponent implements OnInit {
     this.trainingService.getTrainings(this.pageSize, this.pageNumber).subscribe(data => {
       this.trainingsList = data.content;
     });
+    this.searchOption = new Pageable();
   }
 
   ngOnInit() {

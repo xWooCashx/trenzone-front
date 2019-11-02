@@ -1,9 +1,23 @@
-<div style="padding-top: 10px;">
-<mat-chip-list>
-  <mat-chip *ngFor="let tag of training.tags">{{tag}}</mat-chip>
-</mat-chip-list>
+<div style="padding-top: 10px;min-width:200px;width: 100%;">
+  <mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip *ngFor="let tag of training.tags" selectable="false"
+                [removable]="editable" (removed)="remove(tag)">
+        {{tag}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input *ngIf="training.tags && training.tags.length < 5 && editable" placeholder="New tag..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+<!--<mat-chip-list>-->
+<!--  <mat-chip *ngFor="let tag of training.tags">{{tag}}</mat-chip>-->
+<!--</mat-chip-list>-->
   <p *ngIf="!editable">
-    {{training.description}}
+    {{training.description}}aa
   </p>
   <mat-form-field *ngIf="editable"  style="width: 90%;height: 100%">
   <mat-label>Description</mat-label>

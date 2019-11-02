@@ -1,34 +1,51 @@
 
-  <h1 mat-dialog-title>Exercise:</h1>
+  <h1 mat-dialog-title>Activity:</h1>
   <mat-dialog-content  class="dialog_container">
     <table>
       <tr>
         <mat-form-field>
           <mat-label>Name</mat-label>
-          <input required matInput [(ngModel)]="data.name">
+          <input required name="name" matInput [(ngModel)]="data.name"
+                 #name="ngModel">
+          <mat-error *ngIf="name.invalid && name.errors.required">
+            Please insert activity name.
+          </mat-error>
         </mat-form-field>
       </tr>
       <tr>
         <mat-form-field>
           <mat-label>Quantity</mat-label>
-          <input matInput [(ngModel)]="data.quantity">
+          <input matInput required type="number" [(ngModel)]="data.quantity"
+                 #quantity="ngModel">
+          <mat-error *ngIf="quantity.invalid && quantity.errors.required">
+            Please insert quantity.
+          </mat-error>
         </mat-form-field>
       </tr>
       <tr>
         <mat-form-field>
           <mat-label>Number of series</mat-label>
-          <input matInput [(ngModel)]="data.series">
+          <input matInput required type="number" [(ngModel)]="data.series"
+                 #series="ngModel">
+          <mat-error *ngIf="series.invalid && series.errors.required">
+            Please insert number of series.
+          </mat-error>
         </mat-form-field>
       </tr>
       <tr>
         <mat-form-field>
           <mat-label>Unit</mat-label>
-          <input matInput [(ngModel)]="data.unit">
+          <input matInput required [(ngModel)]="data.unit"
+                 #unit="ngModel">
+          <mat-error *ngIf="unit.invalid && unit.errors.required">
+            Please insert unit.
+          </mat-error>
         </mat-form-field>
       </tr>
     </table>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
     <button mat-button (click)="onNoClick()">Go back</button>
-    <button mat-button [mat-dialog-close]="data">Save</button>
+    <button mat-button *ngIf="!name.invalid && !unit.invalid && !series.invalid && !quantity.invalid"
+            [mat-dialog-close]="data">Save</button>
   </mat-dialog-actions>

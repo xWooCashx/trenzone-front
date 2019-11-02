@@ -73,7 +73,7 @@ export class TrainingComponent implements OnInit {
     // this.activities.get(key).push();
     const dialogRef = this.dialog.open(ActivityDetailsDialogComponent, {
       data: {
-        id: '',
+        name: '',
         quantity: '',
         series: '',
         unit: ''
@@ -82,8 +82,10 @@ export class TrainingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.activities.get(key).push(new Activity(result.id, result.quantity, result.series, result.unit, key));
-    });
+      if (result) {
+        this.activities.get(key).push(new Activity(result.name, result.quantity, result.series, result.unit, key));
+      }
+    }, error => console.log('error'));
   }
 
   toggleEdit() {

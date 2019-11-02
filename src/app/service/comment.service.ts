@@ -11,15 +11,14 @@ export class CommentService {
   private commentsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.commentsUrl = 'https://trenzone-server.herokuapp.com/comments';
+    this.commentsUrl = 'https://trenzone-server.herokuapp.com/';
   }
 
   public getCommentsForTraining(trainingId: string): Observable<Comment[]> {
-    console.log('url for comments:', this.commentsUrl + '?training=' + trainingId);
-    return this.http.get<Comment[]>(this.commentsUrl + '?training=' + trainingId);
+    return this.http.get<Comment[]>(this.commentsUrl + 'training/' + trainingId + '/comments');
   }
 
   public postComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.commentsUrl, comment);
+    return this.http.post<Comment>(this.commentsUrl + 'comment', comment);
   }
 }

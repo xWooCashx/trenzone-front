@@ -1,4 +1,4 @@
-export interface TrainingsSearchResult {
+export class TrainingsSearchResult {
   content: Content[];
   pageable: Pageable;
   totalPages: number;
@@ -12,7 +12,7 @@ export interface TrainingsSearchResult {
   empty: boolean;
 }
 
-export interface Content {
+export class Content {
   id: number;
   name: string;
   description: string;
@@ -24,13 +24,13 @@ export interface Content {
   difficulty: string;
 }
 
-export interface Sort {
+export class Sort {
   sorted: boolean;
   unsorted: boolean;
   empty: boolean;
 }
 
-export interface Pageable {
+export class Pageable {
   sort: Sort;
   pageSize: number;
   pageNumber: number;
@@ -39,7 +39,7 @@ export interface Pageable {
   unpaged: boolean;
 }
 
-export interface Sort2 {
+export class Sort2 {
   sorted: boolean;
   unsorted: boolean;
   empty: boolean;

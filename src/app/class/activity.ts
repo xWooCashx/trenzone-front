@@ -7,6 +7,7 @@ export interface ActivityInterface {
   series: number;
   unit: string;
   day: number;
+  name: string;
 }
 
 export class Activity {

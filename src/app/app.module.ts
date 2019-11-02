@@ -36,11 +36,11 @@ import {httpInterceptorProviders} from './auth/auth-interceptor.service';
 import {TrainingsListComponent} from './pages/trainings-list/trainings-list.component';
 import {TrainingSearchItemComponent} from './pages/trainings-list/training-search-item/training-search-item.component';
 import {TrainingsSearchPanelComponent} from './pages/trainings-list/trainings-search-panel/trainings-search-panel.component';
-import { UserBoardComponent } from './pages/user-board/user-board.component';
+import {UserBoardComponent} from './pages/user-board/user-board.component';
 import {TrainingCommentsComponent} from './pages/training/training-comments/training-comments.component';
-import { UserDetailsComponent } from './pages/user-board/user-details/user-details.component';
-import { UserTrainingsComponent } from './pages/user-board/user-trainings/user-trainings.component';
-import { UserAchievementsComponent } from './pages/user-board/user-achievements/user-achievements.component';
+import {UserDetailsComponent} from './pages/user-board/user-details/user-details.component';
+import {UserTrainingsComponent} from './pages/user-board/user-trainings/user-trainings.component';
+import {UserAchievementsComponent} from './pages/user-board/user-achievements/user-achievements.component';
 
 @NgModule({
   declarations: [
