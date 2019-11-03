@@ -5,22 +5,30 @@
   <div class="results-bar">
 
     <mat-card>
-        <div *ngIf="loading" class="overlay-spinner">
-          <mat-progress-spinner
-            class="spinner"
-            color="primary"
-            mode="indeterminate"
-          >
-          </mat-progress-spinner>
-        </div>
-        <table *ngIf="trainingsList;else noResults" class="results">
-          <tr *ngFor="let element of trainingsList">
-            <td>
-              <app-training-search-item [training]="element"></app-training-search-item>
-            </td>
-          </tr>
-        </table>
-        <ng-template #noResults>No results found</ng-template>
+      <div *ngIf="loading" class="overlay-spinner">
+        <mat-progress-spinner
+          class="spinner"
+          color="primary"
+          mode="indeterminate"
+        >
+        </mat-progress-spinner>
+      </div>
+      <table *ngIf="trainingsList && trainingsList.length > 0;else noResults" class="results">
+        <thead>
+        <mat-paginator
+          [length]="searchResult.totalElements"
+                       [pageSize]="searchResult.size"
+                       [pageSizeOptions]="[2, 5, 10, 15]"
+                       (page)="changeResults($event)">
+        </mat-paginator>
+        </thead>
+        <tr *ngFor="let element of trainingsList">
+          <td>
+            <app-training-search-item [training]="element"></app-training-search-item>
+          </td>
+        </tr>
+      </table>
+      <ng-template #noResults>No results found</ng-template>
 
     </mat-card>
   </div>

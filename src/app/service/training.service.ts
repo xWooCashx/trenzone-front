@@ -46,6 +46,10 @@ export class TrainingService {
     return this.http.get<Training>(this.TRENZONE_URL + this.trainingUrl + '/' + trainingID);
   }
 
+  public getUserTrainings(username): Observable<Training[]> {
+    return this.http.get<Training[]>(this.TRENZONE_URL + this.accountUrl + this.trainingUrl);
+  }
+
   public save(training: Training): Observable<Training> {
     return this.http.post<Training>(this.TRENZONE_URL +
       this.accountUrl + training.username + '/' +
