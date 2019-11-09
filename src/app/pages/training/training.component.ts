@@ -10,6 +10,7 @@ import {TrainingService} from '../../service/training.service';
 import {subscribeOn, switchMap} from 'rxjs/operators';
 import {ExerciseService} from '../../service/exercise.service';
 import {AuthenticationService} from '../../service/authentication.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-training',
@@ -17,6 +18,7 @@ import {AuthenticationService} from '../../service/authentication.service';
   styleUrls: ['./training.component.css']
 })
 export class TrainingComponent implements OnInit {
+  difficulties: ['EASY', 'MEDIUM_EASY', 'MEDIUM', 'MEDIUM_HARD', 'HARD'];
   editable = false;
   loading = false;
   days: string[] = ['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -70,7 +72,6 @@ export class TrainingComponent implements OnInit {
   }
 
   addActivity(key: string) {
-    // this.activities.get(key).push();
     const dialogRef = this.dialog.open(ActivityDetailsDialogComponent, {
       data: {
         name: '',
@@ -102,7 +103,6 @@ export class TrainingComponent implements OnInit {
   private save() {
     this.loading = true;
     this.trainingService.save(this.training).subscribe(value => {
-      console.log('respoinse saivng tra:', value);
       this.training = value;
       this.saveActivities();
       this.router.navigateByUrl('/training/' + this.training.id).then(r => {
@@ -113,7 +113,6 @@ export class TrainingComponent implements OnInit {
   private update() {
     this.loading = true;
     this.trainingService.update(this.training).subscribe(value => {
-      console.log('respoinse saivng tra:', value);
       this.training = value;
       this.saveActivities();
     }, error =>
@@ -147,14 +146,11 @@ export class TrainingComponent implements OnInit {
     this.trainingService.getTraining(id).subscribe(value => {
         this.training = value;
         this.exerciseService.getExercises(id).subscribe(value1 => {
-          console.log('value1' + value1);
           if (value1.length > 0) {
             this.training.activities = value1;
             this.mapActivities();
           }
           this.loading = false;
-          console.log('<=============================>');
-          console.log(JSON.stringify(this.training));
         }, error => {
           console.log('error');
           this.loading = false;
@@ -186,7 +182,6 @@ export class TrainingComponent implements OnInit {
   }
 
   toListActivities(): Activity[] {
-    // this.training.activities = [];
     const listedActivities = [];
     for (const key of this.activities.keys()) {
       this.activities.get(key).map((value, index) => {
@@ -195,7 +190,6 @@ export class TrainingComponent implements OnInit {
         listedActivities.push(value);
       });
     }
-    console.log('activities:', listedActivities);
     return listedActivities;
   }
 

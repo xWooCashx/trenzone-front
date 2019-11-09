@@ -4,8 +4,7 @@
 
 export const environment = {
     production: false,
-    difficulties: ['EASY', 'MEDIUM_EASY', 'MEDIUM', 'MEDIUM_HARD', 'HARD'],
-    units: ['KG', 'METER', 'NUMBER', 'KM']
+    difficulties: ['EASY', 'MEDIUM_EASY', 'MEDIUM', 'MEDIUM_HARD', 'HARD']
   }
 ;
 

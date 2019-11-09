@@ -24,7 +24,7 @@
   </mat-card-actions>
   <mat-card-header class="card-header">
     <!--    <div mat-card-avatar class="example-header-image"></div>-->
-    <div>
+    <div style="width: 100%">
       <mat-card-title>
         <span *ngIf="!editable">{{training.name}}</span>
         <mat-form-field *ngIf="editable">
@@ -33,6 +33,19 @@
         </mat-form-field>
       </mat-card-title>
       <mat-card-subtitle>{{training.username}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <span *ngIf="!editable">{{training.difficulty}}</span>
+        <mat-form-field *ngIf="editable">
+          <mat-label>Select an option</mat-label>
+          <mat-select [(value)]="training.difficulty">
+            <mat-option value="EASY">EASY</mat-option>
+            <mat-option value="MEDIUM_EASY">MEDIUM EASY</mat-option>
+            <mat-option value="MEDIUM">MEDIUM</mat-option>
+            <mat-option value="MEDIUM_HARD">MEDIUM HARD</mat-option>
+            <mat-option value="HARD">HARD</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-subtitle>
       <!--      <mat-card-subtitle>{{training.author.firstName + ' ' + training.author.lastName}}</mat-card-subtitle>-->
     </div>
 

@@ -31,7 +31,6 @@ export class TrainingCommentsComponent implements OnInit {
 
   sendComment() {
     if (this.newComment.content) {
-      this.newComment.date = new Date();
       this.newComment.trainingId = this.trainingId;
       console.log(JSON.stringify(this.newComment));
       this.service.postComment(this.newComment).subscribe(value => {
