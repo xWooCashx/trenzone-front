@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+<!--    <div>-->
+<!--      <button mat-icon-button (click)="onToggleSidenav()">-->
+<!--        <mat-icon>menu</mat-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+    <a mat-raised-button routerLink="/" >
+      <h1>Trenzone</h1>
+      </a>
+    <div>
+      <a *ngIf="authenticationService.isLogged()" mat-button
+         routerLink="/user" color="{{clickedLink == 'user' ? 'accent' :''}}"
+         (click)="this.clickedLink = 'user'">User Board</a>
+      <a routerLink="/trainings" mat-button color="{{clickedLink == 'trainings' ? 'accent' :''}}"
+         (click)="this.clickedLink = 'trainings'">List of Trainings</a>
+      <a *ngIf="authenticationService.isLogged()" mat-button color="{{clickedLink == 'training-creator' ? 'accent' :''}}"
+         (click)="this.clickedLink = 'training-creator'"
+         routerLink="/training-creator">New Training</a>
+      <a *ngIf="!authenticationService.isLogged()" mat-button color="{{clickedLink == 'auth/login' ? 'accent' :''}}"
+         (click)="this.clickedLink = 'auth/login'"
+         routerLink="/auth/login">Login</a>
+      <a *ngIf="authenticationService.isLogged()" mat-button color="{{clickedLink == 'logout' ? 'accent':''}}"
+         (click)="tokenStorage.signOut();this.clickedLink = 'logout';" routerLink="/">Log out</a>
+    </div>
+    <!--    <nav class="navbar navbar-expand-lg navbar-light bg-light allnavbar">-->
+    <!--      <a class="navbar-brand TZ" routerLink="/">TZ</a>-->
+    <!--      <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+    <!--        <ul class="navbar-nav mr-auto">-->
+    <!--          <li *ngIf="authenticationService.isLogged()" class="nav-item">-->
+    <!--            <a class="btn btn-info" routerLink="/user">User Board</a>-->
+    <!--          </li>-->
+    <!--          <li class="nav-item">-->
+    <!--            <a routerLink="/trainings" class="btn btn-info">List of Trainings</a>-->
+    <!--          </li>-->
+    <!--          <li *ngIf="authenticationService.isLogged()" class="nav-item" style="float:right;">-->
+    <!--            <a routerLink="/training-creator" class="btn btn-info">New Training</a>-->
+    <!--          </li>-->
+    <!--          <li *ngIf="!authenticationService.isLogged()" class="nav-item">-->
+    <!--            <a class="btn btn-primary" routerLink="/auth/login">Login</a>-->
+    <!--          </li>-->
+    <!--          <li *ngIf="authenticationService.isLogged()" class="nav-item">-->
+    <!--            <a class="btn btn-primary" (click)="tokenStorage.signOut()" routerLink="/">Log out</a>-->
+    <!--          </li>-->
+    <!--        </ul>-->
+    <!--      </div>-->
+    <!--    </nav>-->
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -10,13 +10,21 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule,
+  MatButtonModule,
+  MatCardModule,
   MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatOptionModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule, MatProgressSpinnerModule, MatListModule, MatGridListModule, MatChipsModule, MatPaginatorModule
+  MatTableModule,
+  MatTabsModule,
+  MatProgressSpinnerModule,
+  MatListModule,
+  MatGridListModule,
+  MatChipsModule,
+  MatPaginatorModule,
+  MatToolbarModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -41,6 +49,7 @@ import {TrainingCommentsComponent} from './pages/training/training-comments/trai
 import {UserDetailsComponent} from './pages/user-board/user-details/user-details.component';
 import {UserTrainingsComponent} from './pages/user-board/user-trainings/user-trainings.component';
 import {UserAchievementsComponent} from './pages/user-board/user-achievements/user-achievements.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +74,7 @@ import {UserAchievementsComponent} from './pages/user-board/user-achievements/us
     UserDetailsComponent,
     UserTrainingsComponent,
     UserAchievementsComponent,
+    NavbarComponent,
   ],
   entryComponents: [ActivityDetailsDialogComponent],
   imports: [
@@ -92,6 +102,7 @@ import {UserAchievementsComponent} from './pages/user-board/user-achievements/us
     MatGridListModule,
     MatChipsModule,
     MatPaginatorModule,
+    MatToolbarModule,
 
   ],
   providers: [httpInterceptorProviders],
