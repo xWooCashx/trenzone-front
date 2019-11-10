@@ -32,14 +32,17 @@ export class TrainingService {
     if (name) {
       paramsMap.set('name', name);
     }
-    if (tags) {
-      paramsMap.set('tags', tags);
-    }
     if (difficulty) {
       paramsMap.set('difficulty', difficulty);
     }
-    return this.http.get<TrainingsSearchResult>(this.TRENZONE_URL + this.trainingUrl +
-      this.addParams(paramsMap));
+    let url = this.TRENZONE_URL + this.trainingUrl + this.addParams(paramsMap);
+    if (tags) {
+      for (const tag of tags) {
+        url += '&tag=' + tag;
+      }
+    }
+    console.log('url:', url);
+    return this.http.get<TrainingsSearchResult>(url);
   }
 
   public getTraining(trainingID): Observable<Training> {

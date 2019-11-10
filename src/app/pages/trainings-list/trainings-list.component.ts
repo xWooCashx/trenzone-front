@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TrainingService} from '../../service/training.service';
 import {Content, Pageable, TrainingsSearchResult} from '../../class/TrainingsSearchResult';
 import {PageEvent} from '@angular/material';
+import {QueryObjects} from './trainings-search-panel/trainings-search-panel.component';
 
 @Component({
   selector: 'app-trainings-list',
@@ -37,9 +38,11 @@ export class TrainingsListComponent implements OnInit {
     this.searchResult.number = 0;
   }
 
-  search($event: string) {
+  search($event: QueryObjects) {
     console.log($event);
-    this.queryText = $event;
+    this.queryText = $event.name;
+    this.tags = $event.tags;
+    this.difficulty = $event.difficulty;
     this.findResults();
   }
 
