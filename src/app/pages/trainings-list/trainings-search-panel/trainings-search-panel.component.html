@@ -1,11 +1,11 @@
-<div class="input-text">
-  <mat-form-field appearance="outline" color="primary">
+<div >
+  <mat-form-field appearance="outline" class="input-text" color="primary">
     <mat-label>Search for:</mat-label>
-    <input (keydown.enter)="search()" type="search" key matInput [(ngModel)]="text"/>
+    <input (keydown.enter)="search()" type="search" matInput [(ngModel)]="text"/>
     <mat-icon matSuffix style="cursor: pointer" (click)="search()">search</mat-icon>
   </mat-form-field>
-  <mat-form-field >
-    <mat-label>Select an option</mat-label>
+  <mat-form-field class="input-text">
+    <mat-label>Difficulty</mat-label>
     <mat-select [(value)]="difficulty">
       <mat-option value="">All</mat-option>
       <mat-option value="EASY">EASY</mat-option>
@@ -15,7 +15,7 @@
       <mat-option value="HARD">HARD</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="example-chip-list">
+  <mat-form-field class="input-text">
     <mat-chip-list #chipList aria-label="Fruit selection">
       <mat-chip *ngFor="let tag of tags" selectable="false"
                 [removable]="true" (removed)="remove(tag)">

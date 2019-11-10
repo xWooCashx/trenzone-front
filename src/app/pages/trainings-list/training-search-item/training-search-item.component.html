@@ -4,12 +4,21 @@
 <!--    <u>{{training.tags}}</u>-->
 <!--  </div>-->
 <!--</div>-->
-  <mat-card-header class="card-header">
-      <mat-card-title>
-        <a style="text-decoration: none;color:black" [routerLink]="['/training', training.id]">{{training.name}}</a>
-      </mat-card-title>
-      <mat-card-subtitle> Created at {{training.date | date:'medium'}} by {{training.username}} </mat-card-subtitle>
-    <mat-chip-list>
-    <mat-chip *ngFor="let tag of training.tags">{{tag}}</mat-chip>
-  </mat-chip-list>
-  </mat-card-header>
+<mat-card-header class="card-header">
+  <mat-card-title>
+    <star-rating value="{{training.rate}}" checkedcolor="yellow" uncheckedcolor="black" size="24px"
+                 readonly="true"></star-rating>
+    <a style="text-decoration: none;color:black" (click)="navigateTo(training.id,training.name)"
+       [routerLink]="['/training', training.id]" [state]="{name: training.name}">{{training.name}}</a>
+
+    <mat-chip-list style="float:right">
+      <mat-chip *ngFor="let tag of training.tags">{{tag}}</mat-chip>
+    </mat-chip-list>
+  </mat-card-title>
+  <mat-card-subtitle> Created at {{training.date | date:'medium'}} by {{training.username}}
+    <span title="comments">{{training.commentsSize + ':comments '}}</span>
+    <span title="comments">{{training.ratesSize + ':ratings '}}</span>
+    <span title="comments">{{training.daysSize + ':training days '}}</span>
+    <span title="comments">{{training.exercisesSize + ':exercises '}}</span>
+  </mat-card-subtitle>
+</mat-card-header>

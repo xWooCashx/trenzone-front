@@ -11,7 +11,7 @@ import {QueryObjects} from './trainings-search-panel/trainings-search-panel.comp
 })
 export class TrainingsListComponent implements OnInit {
   trainingsList: Content[];
-  pageSize = 20;
+  pageSize = 10;
   pageNumber = 0;
   searchOption: Pageable;
   private queryText: string;
@@ -30,8 +30,8 @@ export class TrainingsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchOption.pageNumber = 1;
-    this.searchOption.pageSize = 20;
+    this.searchOption.pageNumber = 0;
+    this.searchOption.pageSize = 10;
     this.searchOption.paged = true;
     this.searchResult = new TrainingsSearchResult();
     this.searchResult.size = 10;
@@ -48,8 +48,8 @@ export class TrainingsListComponent implements OnInit {
 
   findResults() {
     this.loading = true;
-    this.trainingService.getTrainings(this.pageSize, this.searchResult.number, this.queryText
-      , this.tags, this.difficulty
+    this.trainingService.getTrainings(this.searchOption.pageSize,
+      this.searchOption.pageNumber, this.queryText, this.tags, this.difficulty
     ).subscribe(data => {
       this.trainingsList = data.content;
       this.searchResult = data;
@@ -58,8 +58,10 @@ export class TrainingsListComponent implements OnInit {
   }
 
   changeResults(page) {
-    this.pageSize = page.pageSize;
-    this.searchResult.number = page.pageIndex;
+    // this.pageSize = page.pageSize;
+    // this.searchResult.number = page.pageIndex;
+    this.searchOption.pageSize = page.pageSize;
+    this.searchOption.pageNumber = page.pageIndex;
     this.findResults();
   }
 }

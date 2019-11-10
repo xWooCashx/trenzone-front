@@ -15,10 +15,12 @@
       </div>
       <table *ngIf="trainingsList && trainingsList.length > 0;else noResults" class="results">
         <thead>
+        {{searchResult.totalElements}}
+        {{searchResult.totalPages}}
         <mat-paginator
           [length]="searchResult.totalElements"
                        [pageSize]="searchResult.size"
-                       [pageSizeOptions]="[2, 5, 10, 15]"
+                       [pageSizeOptions]="[2, 5, 10]"
                        (page)="changeResults($event)">
         </mat-paginator>
         </thead>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Content} from '../../../class/TrainingsSearchResult';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-training-search-item',
@@ -10,10 +11,14 @@ export class TrainingSearchItemComponent implements OnInit {
   @Input()
   training: Content;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
 
+  navigateTo(id: number, name: string) {
+    // this.router.navigateByUrl('/training', id, name).then(value => {
+    // });
+  }
 }

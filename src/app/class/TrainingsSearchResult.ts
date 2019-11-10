@@ -22,6 +22,10 @@ export class Content {
   rate: number;
   roles: string[];
   difficulty: string;
+  commentsSize: number;
+  daysSize: number;
+  exercisesSize: number;
+  ratesSize: number;
 }
 
 export class Sort {
