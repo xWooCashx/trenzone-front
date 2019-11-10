@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -11,7 +12,14 @@ export class TokenStorageService {
 
   private roles: Array<string> = [];
 
-  constructor() {
+  constructor(private router: Router) {
+  }
+
+  isStillLogged(){
+    if (!window.sessionStorage.getItem(TOKEN_KEY)) {
+      this.router.navigateByUrl('/login').then(r => {
+      });
+    }
   }
 
   signOut() {

@@ -9,6 +9,7 @@ export class Training {
   activities: Activity[];
   username: string;
   date: Date;
+  published: boolean;
   difficulty: string;
   tags: string[];
   roles: string[];

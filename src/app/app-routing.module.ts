@@ -11,10 +11,8 @@ import {UserBoardComponent} from './pages/user-board/user-board.component';
 const routes: Routes = [
   {path: 'exercise', component: ExercisesListComponent},
   {path: 'home', component: UserBoardComponent},
-  {path: 'user', component: UserBoardComponent},
-  {path: 'auth/login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
-  {path: 'training-creator', component: TrainingComponent},
   {path: 'training/:id', component: TrainingComponent},
   {path: 'trainings', component: TrainingsListComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}

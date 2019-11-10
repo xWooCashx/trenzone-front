@@ -5,12 +5,12 @@ import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@a
 import {MatDialog, MatInput} from '@angular/material';
 import {ActivityDetailsDialogComponent} from './activity-info/activity-details-dialog/activity-details-dialog.component';
 import {Author} from '../../class/author';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, NavigationStart, ParamMap, Router} from '@angular/router';
 import {TrainingService} from '../../service/training.service';
 import {subscribeOn, switchMap} from 'rxjs/operators';
 import {ExerciseService} from '../../service/exercise.service';
 import {AuthenticationService} from '../../service/authentication.service';
-import {environment} from '../../../environments/environment';
+import {StarRatingComponent} from 'ng-starrating';
 
 @Component({
   selector: 'app-training',
@@ -34,9 +34,6 @@ export class TrainingComponent implements OnInit {
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private router: Router, private trainingService: TrainingService,
               private exerciseService: ExerciseService, public authenticationService: AuthenticationService) {
-  }
-
-  ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadTrainingData(id);
@@ -44,6 +41,18 @@ export class TrainingComponent implements OnInit {
       this.loadMockData();
       this.editable = true;
     }
+  }
+
+  ngOnInit() {
+    this.router.events
+      .subscribe((event: NavigationStart) => {
+        if (event instanceof NavigationStart) {
+          if (event.url.includes('training/')) {
+            const id = this.route.snapshot.paramMap.get('id');
+            this.loadTrainingData(id);
+          }
+        }
+      });
   }
 
   drop(event: CdkDragDrop<Activity[]>) {
@@ -143,6 +152,7 @@ export class TrainingComponent implements OnInit {
   loadTrainingData(id) {
     this.loading = true;
     this.training = new Training();
+    this.activities = new Map<number, Activity[]>();
     this.trainingService.getTraining(id).subscribe(value => {
         this.training = value;
         this.exerciseService.getExercises(id).subscribe(value1 => {
@@ -168,6 +178,7 @@ export class TrainingComponent implements OnInit {
     this.training.name = 'New Training';
     this.training.description = 'Training Description';
     this.training.activities = [];
+    this.activities = new Map<number, Activity[]>();
     this.mapActivities();
   }
 
@@ -203,6 +214,14 @@ export class TrainingComponent implements OnInit {
   publish() {
     this.loading = true;
     this.trainingService.publish(this.training.id, this.training.username)
-      .subscribe(value => this.loading = false);
+      .subscribe(value => {
+        this.training.published = true;
+        this.loading = false;
+      });
+  }
+
+  onRate($event: { oldValue: number; newValue: number; starRating: StarRatingComponent }) {
+    alert(`Old Value:${$event.oldValue},  New Value: ${$event.newValue},
+         Checked Color: ${$event.starRating.checkedcolor},  Unchecked Color: ${$event.starRating.uncheckedcolor}`);
   }
 }

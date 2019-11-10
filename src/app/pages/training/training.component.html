@@ -10,7 +10,7 @@
   <mat-card-actions>
     <button mat-raised-button color="accent" *ngIf="authenticationService.isLogged() && !editable">Activate</button>
     <button mat-raised-button color="accent" (click)="publish()"
-            *ngIf="authenticationService.getUsername() === training.username && training.id">Publish
+            *ngIf="authenticationService.getUsername() === training.username && training.id && !training.published">Publish
     </button>
     <button mat-raised-button color="primary" (click)="toggleEdit()"
             *ngIf="!editable && authenticationService.getUsername() === training.username">Edit
@@ -45,6 +45,9 @@
             <mat-option value="HARD">HARD</mat-option>
           </mat-select>
         </mat-form-field>
+      </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="!editable">
+        <star-rating value="5" checkedcolor="yellow" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
       </mat-card-subtitle>
       <!--      <mat-card-subtitle>{{training.author.firstName + ' ' + training.author.lastName}}</mat-card-subtitle>-->
     </div>

@@ -22,16 +22,30 @@ a {
   text-decoration: none;
   color: white;
 }
-a h1{
+
+a h1 {
   color: #000;
 }
-a:hover, a:active{
+
+a:hover, a:active {
   color: lightgray;
 }
-mat-toolbar{
+
+mat-toolbar {
 }
 
-@media(max-width: 959px){
-  mat-toolbar{
+@media (max-width: 959px) {
+  mat-toolbar {
   }
 }
+
+.active {
+  color: #ffd740;
+}
+.links a{
+  float:left;
+}
+.right-bar a{
+  float:right;
+}
+
