@@ -1,0 +1,15 @@
+.container {
+  /*width: 50%;*/
+  width:50%;
+}
+
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width:auto;
+  /*width: 100%;*/
+}
+
+.full-width {
+  width: 100%;
+}

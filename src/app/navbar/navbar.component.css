@@ -42,10 +42,7 @@ mat-toolbar {
 .active {
   color: #ffd740;
 }
-.links a{
-  float:left;
-}
-.right-bar a{
-  float:right;
+.right-bar{
+  flex: 1 1 auto;
 }
 

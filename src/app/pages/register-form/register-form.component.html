@@ -1,0 +1,65 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Registration</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content>
+      <div *ngIf="loading" class="overlay-spinner">
+      <mat-progress-spinner diameter="20"
+                            class="spinner"
+                            color="primary"
+                            mode="indeterminate"
+      >
+      </mat-progress-spinner>
+    </div>
+      <div class="mat-error" *ngIf="showErrorMessage">
+        {{errorMessage}}
+      </div>
+      <form class="my-form">
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input name="username" matInput [(ngModel)]="userDetails.username" required
+                 #username="ngModel">
+          <mat-error *ngIf="username.invalid">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" [(ngModel)]="userDetails.email" required email #email="ngModel">
+          <mat-error *ngIf="email.invalid && email.errors.email">
+            This is not an email.
+          </mat-error>
+          <mat-error *ngIf="email.invalid && email.errors.required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput name="password" [(ngModel)]="userDetails.password" required minlength="5"
+                 #password="ngModel">
+          <mat-error *ngIf="password.invalid && userDetails.password.length >= 6">
+            This field is required
+          </mat-error>
+          <mat-error *ngIf="password.invalid && userDetails.password.length < 6">
+            Min length is 6
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Repeat Password</mat-label>
+          <input type="password" matInput name="repeatedPassword" [(ngModel)]="repeatedPass" [errorStateMatcher]="err"
+                 #repeatedPassword="ngModel">
+          <mat-error *ngIf="passwordsError">
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions style="justify-content: space-evenly">
+      <button mat-raised-button (click)="register()" color="accent"
+              disabled="{{!(username.valid && email.valid && password.valid && repeatedPass==password.value)}}">REGISTER
+      </button>
+      <a mat-raised-button color="accent" routerLink="/login">Login</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

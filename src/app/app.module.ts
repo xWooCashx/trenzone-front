@@ -24,7 +24,7 @@ import {
   MatGridListModule,
   MatChipsModule,
   MatPaginatorModule,
-  MatToolbarModule, MatMenuModule
+  MatToolbarModule, MatMenuModule, MatDatepickerModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -52,6 +52,8 @@ import {UserAchievementsComponent} from './pages/user-board/user-achievements/us
 import {NavbarComponent} from './navbar/navbar.component';
 import {RatingModule} from 'ng-starrating';
 import {UserModule} from './auth/user/user.module';
+import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { RegisterFormComponent } from './pages/register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import {UserModule} from './auth/user/user.module';
     UserTrainingsComponent,
     UserAchievementsComponent,
     NavbarComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   entryComponents: [ActivityDetailsDialogComponent],
   imports: [
@@ -107,7 +111,8 @@ import {UserModule} from './auth/user/user.module';
     MatToolbarModule,
     MatMenuModule,
     RatingModule,
-    UserModule
+    UserModule,
+    MatDatepickerModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

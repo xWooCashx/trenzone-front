@@ -24,6 +24,10 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
+  login(username, password): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(this.loginUrl, new AuthLoginInfo(username, password), httpOptions);
+  }
+
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signUpUrl, info, httpOptions);
   }

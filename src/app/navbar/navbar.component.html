@@ -19,11 +19,12 @@
           </mat-menu>
       </span>
       <span class="right-bar">
+      </span>
       <a *ngIf="!authenticationService.isLogged()" mat-button routerLinkActive="active"
-         routerLink="/login" style="float:right">Login</a>
+         routerLink="/login" >Login</a>
       <a *ngIf="authenticationService.isLogged()" mat-button
          (click)="tokenStorage.signOut();" routerLink="/">Log out</a>
-  </span>
+
     </div>
     <!--    <nav class="navbar navbar-expand-lg navbar-light bg-light allnavbar">-->
     <!--      <a class="navbar-brand TZ" routerLink="/">TZ</a>-->
