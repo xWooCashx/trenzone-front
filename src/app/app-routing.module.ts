@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'signup', component: RegisterFormComponent},
   {path: 'training/:id', component: TrainingComponent},
   {path: 'trainings', component: TrainingsListComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({

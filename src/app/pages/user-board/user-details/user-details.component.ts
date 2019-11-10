@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../../service/authentication.service';
+import {UserServiceService} from '../../../service/user-service.service';
+import {User} from '../../../class/user';
 
 @Component({
   selector: 'app-user-details',
@@ -7,10 +9,17 @@ import {AuthenticationService} from '../../../service/authentication.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  user = new User();
 
-  constructor(public authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService, public userService: UserServiceService) {
+
+  }
 
   ngOnInit() {
+    this.userService.getUserDetails(this.authService.getUsername()).subscribe(value => {
+      console.log('user:', value);
+      this.user = value;
+    });
   }
 
 }

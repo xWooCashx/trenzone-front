@@ -18,6 +18,10 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private authService: AuthService, public router: Router, public tokenStorage: TokenStorageService) {
     this.userDetails.password = '';
+    if (this.tokenStorage.getToken()) {
+      this.router.navigateByUrl('/user').then(r => {
+      });
+    }
   }
 
   ngOnInit() {

@@ -16,7 +16,7 @@ export class TrainingsSearchPanelComponent implements OnInit {
   text: string;
   @Output() query = new EventEmitter<QueryObjects>();
   @Output() sendTags = new EventEmitter<string[]>();
-  private tags = [];
+  tags = [];
   readonly separatorKeysCodes: number[] = [13, 188];
   addOnBlur = true;
   queryObjects = new QueryObjects();

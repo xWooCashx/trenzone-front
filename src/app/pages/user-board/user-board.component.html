@@ -1,23 +1,21 @@
-<mat-grid-list cols="1" rowHeight="2:1" *ngIf="!authService.isLogged(); else loggedIn">
-  <mat-grid-tile class="container">
+<mat-grid-list *ngIf="!authService.isLogged(); else loggedIn">
     Welcome to Trenzone!!
-  </mat-grid-tile>
 </mat-grid-list>
 <ng-template #loggedIn>
   <mat-grid-list  cols="2" rowHeight="2:1" class="user-board">
-    <mat-grid-tile class="container">
-      <mat-grid-tile-header>Account Details</mat-grid-tile-header>
+    <mat-grid-tile class="container" rowspan="2">
+<!--      <mat-grid-tile-header>Account Details</mat-grid-tile-header>-->
       <app-user-details></app-user-details>
     </mat-grid-tile>
     <mat-grid-tile class="container">
       <mat-grid-tile-header>Trainings</mat-grid-tile-header>
       <app-user-trainings></app-user-trainings>
     </mat-grid-tile>
-    <mat-grid-tile class="container">
-      <mat-grid-tile-header>Achievements</mat-grid-tile-header>
-      TODO achievements
-      <!--      <app-user-achievements></app-user-achievements>-->
-    </mat-grid-tile>
+<!--    <mat-grid-tile class="container">-->
+<!--      <mat-grid-tile-header>Achievements</mat-grid-tile-header>-->
+<!--      TODO achievements-->
+<!--      &lt;!&ndash;      <app-user-achievements></app-user-achievements>&ndash;&gt;-->
+<!--    </mat-grid-tile>-->
     <mat-grid-tile class="container">
       <mat-grid-tile-header>Analytics</mat-grid-tile-header>
       TODO ANALYTICS
