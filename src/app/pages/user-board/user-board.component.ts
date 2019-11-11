@@ -9,7 +9,7 @@ import {UserAchievementsComponent} from './user-achievements/user-achievements.c
 })
 export class UserBoardComponent implements OnInit {
   clickedTrainingId: string;
-  @ViewChild(UserAchievementsComponent)
+  @ViewChild(UserAchievementsComponent, {static: false})
   private childComponent: UserAchievementsComponent;
 
   constructor(public authService: AuthenticationService) {
