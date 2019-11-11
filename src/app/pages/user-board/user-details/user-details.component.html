@@ -1,19 +1,66 @@
-<mat-card class="example-card">
+<mat-card class="card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{user.name + ' ' + user.lastName}}</mat-card-title>
     <mat-card-subtitle>{{user.username}}</mat-card-subtitle>
+    <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
   </mat-card-header>
   <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+    <form class="example-form">
+      <mat-form-field class="full-width">
+        <mat-label>First Name:</mat-label>
+        <input matInput  [(ngModel)]="userEditable.name"    #name="ngModel" name="name"
+               [disabled]="!editable">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Last Name:</mat-label>
+        <input matInput  [(ngModel)]="userEditable.lastName"  #lastName="ngModel"  name="lastName"
+               [disabled]="!editable">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Age:</mat-label>
+        <input matInput type="number" min="1" max="100" [(ngModel)]="userEditable.age"  #age="ngModel"  name="age"
+               [disabled]="!editable">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Height:</mat-label>
+        <input matInput type="number" min="1" max="100"   [(ngModel)]="userEditable.height"  #height="ngModel"  name="height"
+               [disabled]="!editable">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Weight:</mat-label>
+        <input matInput type="number" min="1" max="100"  [(ngModel)]="userEditable.weight"  #weight="ngModel"  name="weight"
+               [disabled]="!editable">
+      </mat-form-field>
+      <div *ngIf="userEditable.trainerDetails">
+      <mat-form-field class="full-width" *ngIf="userEditable.trainerDetails">
+        <mat-label>First Name:</mat-label>
+        <textarea matInput placeholder="Trainer description" [(ngModel)]="userEditable.trainerDetails.description"  name="description"
+                  #description="ngModel"
+        [disabled]="!editable"></textarea>
+      </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Weight:</mat-label>
+          <input matInput [(ngModel)]="userEditable.trainerDetails.phoneNumber"  #number="ngModel"  name="number"
+                 [disabled]="!editable">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Weight:</mat-label>
+          <input matInput [(ngModel)]="userEditable.trainerDetails.city"  #city="ngModel"  name="city"
+                 [disabled]="!editable">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Weight:</mat-label>
+          <input matInput [(ngModel)]="userEditable.trainerDetails.job"  #job="ngModel"  name="job"
+                 [disabled]="!editable">
+        </mat-form-field>
+      </div>
+    </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions style="display:flex;justify-content: space-evenly">
+    <button mat-raised-button color="accent" (click)="editable=true" *ngIf="!editable">Edit</button>
+    <button mat-raised-button color="primary" (click)="saveDetails()" *ngIf="editable">Save</button>
+    <button mat-raised-button color="warn" (click)="cancelEdit()" *ngIf="editable">Cancel</button>
   </mat-card-actions>
 </mat-card>

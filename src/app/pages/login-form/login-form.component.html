@@ -37,7 +37,7 @@
         </mat-form-field>
       </form>
     </mat-card-content>
-    <mat-card-actions style="justify-content: space-evenly">
+    <mat-card-actions style="display:flex;justify-content: space-evenly">
       <button mat-raised-button (click)="login()" color="accent"
               disabled="{{!(username.valid && password.valid)}}">Log in
       </button>

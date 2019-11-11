@@ -6,6 +6,7 @@ import {SignUpInfo} from '../../auth/class/sign-up-info';
 import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {UserServiceService} from '../../service/user-service.service';
 
 @Component({
   selector: 'app-register-form',
@@ -22,7 +23,8 @@ export class RegisterFormComponent implements OnInit {
   errorMessage = '';
   loading = false;
 
-  constructor(private authService: AuthService, public router: Router, public tokenStorage: TokenStorageService) {
+  constructor(private authService: AuthService, public router: Router, public tokenStorage: TokenStorageService,
+              public userService: UserServiceService) {
     this.userDetails.password = this.repeatedPass;
   }
 
@@ -40,6 +42,8 @@ export class RegisterFormComponent implements OnInit {
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         this.authService.login(this.userDetails.username, this.userDetails.password).subscribe(value => {
+          this.userService.saveUserDetails(this.userDetails).subscribe(value1 => {
+          });
           this.tokenStorage.saveToken(value.token);
           this.tokenStorage.saveUsername(value.username);
           this.tokenStorage.saveAuthorities(value.authorities);

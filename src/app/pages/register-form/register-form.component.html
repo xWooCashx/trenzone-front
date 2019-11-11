@@ -1,20 +1,24 @@
 <div class="container">
   <mat-toolbar>
-    <span>Registration</span>
+    <h1>Registration</h1> &nbsp;
+    <div *ngIf="loading" class="overlay-spinner">
+    <mat-progress-spinner diameter="20"
+                          class="spinner"
+                          color="primary"
+                          mode="indeterminate"
+    >
+    </mat-progress-spinner>
+  </div>
+    <div class="mat-error" *ngIf="showErrorMessage">
+      {{errorMessage}}
+    </div>
   </mat-toolbar>
   <mat-card class="my-card">
-    <mat-card-content>
-      <div *ngIf="loading" class="overlay-spinner">
-      <mat-progress-spinner diameter="20"
-                            class="spinner"
-                            color="primary"
-                            mode="indeterminate"
-      >
-      </mat-progress-spinner>
-    </div>
-      <div class="mat-error" *ngIf="showErrorMessage">
-        {{errorMessage}}
-      </div>
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content style="display:flex;justify-content: space-evenly">
+
       <form class="my-form">
         <mat-form-field class="full-width" floatLabel="always" appearance="outline">
           <mat-label>Username</mat-label>
@@ -24,6 +28,15 @@
             This field is required
           </mat-error>
         </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>First Name:</mat-label>
+          <input matInput  [(ngModel)]="userDetails.name"    #name="ngModel" name="name">
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Last Name:</mat-label>
+          <input matInput  [(ngModel)]="userDetails.lastName"  #lastName="ngModel"  name="lastName">
+        </mat-form-field>
+
         <mat-form-field class="full-width" floatLabel="always" appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput name="email" [(ngModel)]="userDetails.email" required email #email="ngModel">
@@ -36,7 +49,7 @@
         </mat-form-field>
         <mat-form-field class="full-width" floatLabel="always" appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput name="password" [(ngModel)]="userDetails.password" required minlength="5"
+          <input type="password" matInput name="password" [(ngModel)]="userDetails.password" required minlength="6"
                  #password="ngModel">
           <mat-error *ngIf="password.invalid && userDetails.password.length >= 6">
             This field is required
@@ -55,7 +68,7 @@
         </mat-form-field>
       </form>
     </mat-card-content>
-    <mat-card-actions style="justify-content: space-evenly">
+    <mat-card-actions style="display:flex;justify-content: space-evenly">
       <button mat-raised-button (click)="register()" color="accent"
               disabled="{{!(username.valid && email.valid && password.valid && repeatedPass==password.value)}}">REGISTER
       </button>

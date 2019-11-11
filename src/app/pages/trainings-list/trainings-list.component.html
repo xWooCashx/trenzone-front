@@ -15,8 +15,6 @@
       </div>
       <table *ngIf="trainingsList && trainingsList.length > 0;else noResults" class="results">
         <thead>
-        {{searchResult.totalElements}}
-        {{searchResult.totalPages}}
         <mat-paginator
           [length]="searchResult.totalElements"
                        [pageSize]="searchResult.size"

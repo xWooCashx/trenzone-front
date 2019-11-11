@@ -10,6 +10,8 @@ import {User} from '../../../class/user';
 })
 export class UserDetailsComponent implements OnInit {
   user = new User();
+  userEditable = new User();
+  editable = false;
 
   constructor(public authService: AuthenticationService, public userService: UserServiceService) {
 
@@ -19,7 +21,19 @@ export class UserDetailsComponent implements OnInit {
     this.userService.getUserDetails(this.authService.getUsername()).subscribe(value => {
       console.log('user:', value);
       this.user = value;
+      this.userEditable = {...this.user};
     });
   }
 
+  saveDetails() {
+    this.userService.updateDetail(this.userEditable).subscribe(value => {
+      this.user = value;
+      this.editable = false;
+    });
+  }
+
+  cancelEdit() {
+    this.userEditable = {...this.user};
+    this.editable = false;
+  }
 }
