@@ -1,7 +1,17 @@
-<mat-tab-group class="details">
+<mat-tab-group class="details" >
   <mat-tab label="Created">
     <ng-template matTabContent>
-      {{trainingsCreated.content}}
+      <mat-card>
+        <table *ngIf="trainingsCreated && trainingsCreated.length > 0;else noResults" class="results">
+          <tr *ngFor="let element of trainingsCreated">
+            <td>
+              {{element.name}}
+            </td>
+          </tr>
+        </table>
+        <ng-template #noResults>No results found</ng-template>
+
+      </mat-card>
     </ng-template>
   </mat-tab>
   <mat-tab label="Active">

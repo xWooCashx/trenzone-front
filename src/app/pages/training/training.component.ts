@@ -11,6 +11,7 @@ import {subscribeOn, switchMap} from 'rxjs/operators';
 import {ExerciseService} from '../../service/exercise.service';
 import {AuthenticationService} from '../../service/authentication.service';
 import {StarRatingComponent} from 'ng-starrating';
+import {UserServiceService} from '../../service/user-service.service';
 
 @Component({
   selector: 'app-training',
@@ -33,7 +34,8 @@ export class TrainingComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private router: Router, private trainingService: TrainingService,
-              private exerciseService: ExerciseService, public authenticationService: AuthenticationService) {
+              private exerciseService: ExerciseService, public authenticationService: AuthenticationService,
+              public userService: UserServiceService) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadTrainingData(id);
@@ -223,5 +225,11 @@ export class TrainingComponent implements OnInit {
   onRate($event: { oldValue: number; newValue: number; starRating: StarRatingComponent }) {
     alert(`Old Value:${$event.oldValue},  New Value: ${$event.newValue},
          Checked Color: ${$event.starRating.checkedcolor},  Unchecked Color: ${$event.starRating.uncheckedcolor}`);
+  }
+
+  activate() {
+    this.userService.activateTraining(this.training.id, this.authenticationService.getUsername()).subscribe(value => {
+      this.loadTrainingData(value.trainingDTO.id);
+    }, error => console.log('error:', error));
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserServiceService} from '../../../service/user-service.service';
 import {AuthenticationService} from '../../../service/authentication.service';
-import {TrainingsSearchResult} from '../../../class/TrainingsSearchResult';
+import {Content, TrainingsSearchResult} from '../../../class/TrainingsSearchResult';
 
 @Component({
   selector: 'app-user-trainings',
@@ -9,14 +9,16 @@ import {TrainingsSearchResult} from '../../../class/TrainingsSearchResult';
   styleUrls: ['./user-trainings.component.css']
 })
 export class UserTrainingsComponent implements OnInit {
-  trainingsCreated = new TrainingsSearchResult();
+  trainingsCreated = [];
 
   constructor(public userServ: UserServiceService, public authService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.userServ.getUserTrainings(this.authService.getUsername()).subscribe(value =>
-    this.trainingsCreated = value);
+    this.userServ.getUserTrainings(this.authService.getUsername()).subscribe(value => {
+      console.log('trainings created:', JSON.stringify(value));
+      this.trainingsCreated = value;
+    });
   }
 
 }

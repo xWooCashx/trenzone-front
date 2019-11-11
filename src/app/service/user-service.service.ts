@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../class/user';
-import {TrainingsSearchResult} from '../class/TrainingsSearchResult';
+import {Content, TrainingsSearchResult} from '../class/TrainingsSearchResult';
+import {ActivatedTraining} from '../class/ActivatedTraining';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class UserServiceService {
     return this.http.get<User>(this.userURL + username);
   }
 
-  public getUserTrainings(username): Observable<TrainingsSearchResult> {
-    return this.http.get<TrainingsSearchResult>(this.userURL2 + username + '/trainings');
+  public getUserTrainings(username): Observable<Content[]> {
+    return this.http.get<Content[]>(this.userURL2 + username + '/trainings');
   }
 
   public getUserActiveTrainings(username): Observable<User> {
@@ -35,5 +36,18 @@ export class UserServiceService {
 
   saveUserDetails(user: User): Observable<User> {
     return this.http.post<User>(this.userURL, user);
+  }
+
+  public activateTraining(id, username): Observable<ActivatedTraining> {
+    return this.http.post<ActivatedTraining>(this.userURL2 + username + '/actives/' + id,
+      {});
+  }
+
+  public deactivateTraining(id, username): Observable<string> {
+    return this.http.delete<string>(this.userURL2 + username + '/actives/' + id);
+  }
+
+  public findAllCommentsForAccount(id): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.userURL2 + id + '/comments');
   }
 }

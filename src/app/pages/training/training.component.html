@@ -7,8 +7,9 @@
   </mat-progress-spinner>
 </div>
 <mat-card class="details" style="height: 100%">
-  <mat-card-actions>
-    <button mat-raised-button color="accent" *ngIf="authenticationService.isLogged() && !editable">Activate</button>
+  <mat-card-actions style="display:flex;justify-content: space-evenly">
+    <button mat-raised-button color="accent"  (click)="activate()"
+            *ngIf="authenticationService.isLogged() && !editable">Activate</button>
     <button mat-raised-button color="accent" (click)="publish()"
             *ngIf="authenticationService.getUsername() === training.username && training.id && !training.published">Publish
     </button>
