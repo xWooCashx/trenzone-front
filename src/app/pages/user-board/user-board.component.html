@@ -1,38 +1,18 @@
 <mat-grid-list *ngIf="!authService.isLogged(); else loggedIn">
-    Welcome to Trenzone!!
+  Welcome to Trenzone!!
 </mat-grid-list>
-<ng-template #loggedIn class="user-board">
-  <mat-grid-list  cols="2" rowHeight="2:1">
-    <mat-grid-tile class="container" rowspan="2">
-<!--      <mat-grid-tile-header>Account Details</mat-grid-tile-header>-->
+<ng-template #loggedIn>
+  <div class="user-board">
+    <div class="column">
       <app-user-details></app-user-details>
-    </mat-grid-tile>
-    <mat-grid-tile class="container">
-<!--      <mat-grid-tile-header>Trainings</mat-grid-tile-header>-->
-      <app-user-trainings></app-user-trainings>
-    </mat-grid-tile>
-<!--    <mat-grid-tile class="container">-->
-<!--      <mat-grid-tile-header>Achievements</mat-grid-tile-header>-->
-<!--      TODO achievements-->
-<!--      &lt;!&ndash;      <app-user-achievements></app-user-achievements>&ndash;&gt;-->
-<!--    </mat-grid-tile>-->
-    <mat-grid-tile class="container">
-<!--      <mat-grid-tile-header>Analytics</mat-grid-tile-header>-->
-      TODO ANALYTICS
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+    <div class="column">
+      <div class="row">
+        <app-user-trainings (show)="showAchievFor($event)"></app-user-trainings>
+      </div>
+      <div class="row">
+        <app-user-achievements [trainingId]="clickedTrainingId"></app-user-achievements>
+      </div>
+    </div>
+  </div>
 </ng-template>
-<!--<div class="board-container">-->
-<!--  <div class="details-container container">-->
-<!--    <app-user-details></app-user-details>-->
-<!--  </div>-->
-<!--  <div class="board-container container">-->
-<!--    <app-user-trainings></app-user-trainings>-->
-<!--  </div>-->
-<!--  <div class="board-container container">-->
-<!--    <app-user-achievements></app-user-achievements>-->
-<!--  </div>-->
-<!--  <div class="board-container container">-->
-<!--    TODO ANALYTICS-->
-<!--  </div>-->
-<!--</div>-->

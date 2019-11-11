@@ -1,20 +1,21 @@
 <div class="container">
   <mat-toolbar>
     <span>Log in</span>
+    <div *ngIf="loading" class="overlay-spinner">
+      <mat-progress-spinner diameter="20"
+                            class="spinner"
+                            color="primary"
+                            mode="indeterminate"
+      >
+      </mat-progress-spinner>
+    </div>
+    <div class="mat-error" *ngIf="showErrorMessage">
+      Please check your credentials.
+    </div>
   </mat-toolbar>
   <mat-card class="my-card">
-    <mat-card-content>
-      <div *ngIf="loading" class="overlay-spinner">
-        <mat-progress-spinner diameter="20"
-                              class="spinner"
-                              color="primary"
-                              mode="indeterminate"
-        >
-        </mat-progress-spinner>
-      </div>
-      <div class="mat-error" *ngIf="showErrorMessage">
-        Please check your credentials.
-      </div>
+    <mat-card-content style="display:flex;justify-content: space-evenly">
+
       <form class="my-form">
         <mat-form-field class="full-width" floatLabel="always" appearance="outline">
           <mat-label>Username</mat-label>

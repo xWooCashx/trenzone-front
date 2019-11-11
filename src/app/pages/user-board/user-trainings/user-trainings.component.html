@@ -1,25 +1,39 @@
-<mat-tab-group class="details" >
-  <mat-tab label="Created">
-    <ng-template matTabContent>
-      <mat-card>
-        <table *ngIf="trainingsCreated && trainingsCreated.length > 0;else noResults" class="results">
-          <tr *ngFor="let element of trainingsCreated">
-            <td>
-              {{element.name}}
-            </td>
-          </tr>
-        </table>
-        <ng-template #noResults>No results found</ng-template>
-
-      </mat-card>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Active">
-    <ng-template matTabContent>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Comments">
-    <ng-template matTabContent>Content 3
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+<mat-card>
+  <mat-tab-group class="details">
+    <mat-tab label="Created">
+      <ng-template matTabContent>
+        <mat-card>
+          <table *ngIf="trainingsCreated && trainingsCreated.length > 0;else noResults" class="results">
+            <tr *ngFor="let element of trainingsCreated">
+              <td>
+                {{element.name}}
+              </td>
+            </tr>
+          </table>
+          <ng-template #noResults>No results found</ng-template>
+        </mat-card>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Active">
+      <ng-template matTabContent>
+        <mat-card>
+          <table *ngIf="trainingsActivated && trainingsActivated.length > 0;else noResults" class="results">
+            <tr *ngFor="let element of trainingsActivated" style="display: flex; justify-content: space-evenly;">
+              <td>
+                <a routerLink="{{'/training/'+element.trainingDTO.id}}"> {{element.trainingDTO.name}}</a>
+              </td>
+              <td>
+                <button mat-raised-button (click)="showAchievs(element.trainingDTO.id)">Show Achievements</button>
+              </td>
+            </tr>
+          </table>
+          <ng-template #noResults>No results found</ng-template>
+        </mat-card>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Comments">
+      <ng-template matTabContent>Content 3
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

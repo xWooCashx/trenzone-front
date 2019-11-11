@@ -1,3 +1,5 @@
+import {Pageable, Sort2} from './TrainingsSearchResult';
+
 export interface TrainingDTO {
   id: number;
   name: string;
@@ -22,4 +24,18 @@ export interface ActivatedTraining {
   startDate: string;
   endDate?: any;
   active: boolean;
+}
+
+export interface ActiveTrainings {
+  content: ActivatedTraining[];
+  pageable: Pageable;
+  totalPages: number;
+  totalElements: number;
+  last: boolean;
+  first: boolean;
+  sort: Sort2;
+  numberOfElements: number;
+  size: number;
+  number: number;
+  empty: boolean;
 }

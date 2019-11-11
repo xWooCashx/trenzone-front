@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserServiceService} from '../../../service/user-service.service';
 import {AuthenticationService} from '../../../service/authentication.service';
 import {Content, TrainingsSearchResult} from '../../../class/TrainingsSearchResult';
@@ -10,6 +10,8 @@ import {Content, TrainingsSearchResult} from '../../../class/TrainingsSearchResu
 })
 export class UserTrainingsComponent implements OnInit {
   trainingsCreated = [];
+  trainingsActivated = [];
+  @Output() show = new EventEmitter<string>();
 
   constructor(public userServ: UserServiceService, public authService: AuthenticationService) {
   }
@@ -19,6 +21,14 @@ export class UserTrainingsComponent implements OnInit {
       console.log('trainings created:', JSON.stringify(value));
       this.trainingsCreated = value;
     });
+    this.userServ.getUserActiveTrainings(this.authService.getUsername()).subscribe(value => {
+      console.log('trainings active:', JSON.stringify(value.content));
+      this.trainingsActivated = value.content;
+    });
   }
 
+  showAchievs(id) {
+    console.log(id);
+    this.show.emit(id);
+  }
 }

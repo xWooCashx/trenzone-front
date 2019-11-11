@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from '../../service/authentication.service';
+import {UserAchievementsComponent} from './user-achievements/user-achievements.component';
 
 @Component({
   selector: 'app-user-board',
@@ -7,10 +8,19 @@ import {AuthenticationService} from '../../service/authentication.service';
   styleUrls: ['./user-board.component.css']
 })
 export class UserBoardComponent implements OnInit {
+  clickedTrainingId: string;
+  @ViewChild(UserAchievementsComponent)
+  private childComponent: UserAchievementsComponent;
 
-  constructor(public authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService) {
+  }
 
   ngOnInit() {
   }
 
+  showAchievFor($event: string) {
+    console.log('event', $event);
+    this.clickedTrainingId = $event;
+    this.childComponent.getAchievs($event);
+  }
 }

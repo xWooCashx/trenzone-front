@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../class/user';
 import {Content, TrainingsSearchResult} from '../class/TrainingsSearchResult';
-import {ActivatedTraining} from '../class/ActivatedTraining';
+import {ActivatedTraining, ActiveTrainings} from '../class/ActivatedTraining';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,8 @@ export class UserServiceService {
     return this.http.get<Content[]>(this.userURL2 + username + '/trainings');
   }
 
-  public getUserActiveTrainings(username): Observable<User> {
-    return this.http.get<User>(this.userURL + username + '/actives');
+  public getUserActiveTrainings(username): Observable<ActiveTrainings> {
+    return this.http.get<ActiveTrainings>(this.userURL2 + username + '/actives');
   }
 
   // public getUserDetails(username): Observable<User> {
