@@ -25,10 +25,15 @@ export class UserTrainingsComponent implements OnInit {
       console.log('trainings active:', JSON.stringify(value.content));
       this.trainingsActivated = value.content;
     });
+    // this.userServ.findAllCommentsForAccount(this.authService.getUsername()).subscribe(value => {
+    //   console.log('trainings active:', JSON.stringify(value.content));
+    //   this.trainingsActivated = value.content;
+    // });
   }
 
   showAchievs(id) {
     console.log(id);
     this.show.emit(id);
   }
+
 }

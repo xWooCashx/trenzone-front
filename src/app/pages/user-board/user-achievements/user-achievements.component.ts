@@ -90,6 +90,7 @@ export class UserAchievementsComponent implements OnInit {
   // }
 
   createChart() {
+
     const dataPoints = [];
     this.pointsMap.forEach((value, key) => {
       value.sort((a, b) => {
@@ -124,16 +125,18 @@ export class UserAchievementsComponent implements OnInit {
       },
       legend: {
         cursor: 'pointer',
-        itemclick: this.toggleDataSeries
+        itemclick: toggleDataSeries
       },
       data: dataPoints
     });
 
     this.chart.render();
+    const chartCopy = this.chart;
+
+    function toggleDataSeries(e) {
+      e.dataSeries.visible = !(typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible);
+      chartCopy.render();
+    }
   }
 
-  toggleDataSeries(e) {
-    e.dataSeries.visible = !(typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible);
-    this.chart.render();
-  }
 }
