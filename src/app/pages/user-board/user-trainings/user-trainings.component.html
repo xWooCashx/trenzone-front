@@ -1,5 +1,5 @@
 <!--<mat-card>-->
-  <mat-tab-group class="details mat-tab-nav-bar">
+  <mat-tab-group class="details">
     <mat-tab label="Created" class="tab">
       <ng-template matTabContent>
         <mat-card>
@@ -19,7 +19,7 @@
       <ng-template matTabContent>
         <mat-card>
           <table *ngIf="trainingsActivated && trainingsActivated.length > 0;else noResults" class="results">
-            <tr *ngFor="let element of trainingsActivated" style="display: flex; justify-content: space-evenly;">
+            <tr *ngFor="let element of trainingsActivated" style="display: flex; justify-content:space-between;">
               <td>
                 <a routerLink="{{'/training/'+element.trainingDTO.id}}"> {{element.trainingDTO.name}}</a>
               </td>
