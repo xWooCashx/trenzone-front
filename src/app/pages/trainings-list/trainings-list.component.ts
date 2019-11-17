@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainingService} from '../../service/training.service';
 import {Content, Pageable, TrainingsSearchResult} from '../../class/TrainingsSearchResult';
-import {PageEvent} from '@angular/material';
+import {MatButtonToggleChange, PageEvent} from '@angular/material';
 import {QueryObjects} from './trainings-search-panel/trainings-search-panel.component';
 
 @Component({
@@ -20,6 +20,11 @@ export class TrainingsListComponent implements OnInit {
   loading = false;
   searchResult: TrainingsSearchResult;
   pageEvent: PageEvent;
+  sort = 'name';
+  sortOptions = [{name: 'name', label: 'Name'},
+    {name: 'name', label: 'Name'},
+    {name: 'name', label: 'Name'}];
+  direction = 1;
 
   constructor(private trainingService: TrainingService) {
     // this.findResults();
@@ -63,5 +68,26 @@ export class TrainingsListComponent implements OnInit {
     this.searchOption.pageSize = page.pageSize;
     this.searchOption.pageNumber = page.pageIndex;
     this.findResults();
+  }
+
+  changeSort(option: string) {
+    if (this.sort === option) {
+      this.direction *= -1;
+    } else {
+      this.sort = option;
+      this.direction = 1;
+    }
+    this.trainingsList.sort((a, b) => {
+      if (this.sort === 'name') {
+        return a.name.toLowerCase() > b.name.toLowerCase() ? this.direction : (-1) * this.direction;
+      }
+      if (this.sort === 'rating') {
+        return a.rate > b.rate ? this.direction : (-1) * this.direction;
+      }
+      if (this.sort === 'comments') {
+        return a.commentsSize > b.commentsSize ? this.direction : (-1) * this.direction;
+      }
+    });
+    console.log(option);
   }
 }

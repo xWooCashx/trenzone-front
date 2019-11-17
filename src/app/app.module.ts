@@ -24,7 +24,7 @@ import {
   MatGridListModule,
   MatChipsModule,
   MatPaginatorModule,
-  MatToolbarModule, MatMenuModule, MatDatepickerModule
+  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -125,7 +125,9 @@ export function provideConfig() {
     RatingModule,
     UserModule,
     MatDatepickerModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatRadioModule,
+    MatButtonToggleModule
   ],
   providers: [
     httpInterceptorProviders, {

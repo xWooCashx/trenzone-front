@@ -6,7 +6,7 @@
     <div class="links">
       <a *ngIf="authenticationService.isLogged()" mat-button
          routerLink="/user" routerLinkActive="active">User Board</a>
-      <a routerLink="/trainings" mat-button routerLinkActive="active">List of Trainings</a>
+      <a routerLink="/trainings" mat-button routerLinkActive="active">Search</a>
       <a *ngIf="authenticationService.isLogged()" mat-button routerLinkActive="active"
          routerLink="/training-creator">New Training</a>
       <span *ngIf="trainingURLs && trainingURLs.size>0" style="float: left">
