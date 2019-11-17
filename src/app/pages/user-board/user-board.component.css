@@ -7,20 +7,20 @@
 
 .user-board {
   display: flex;
-  justify-content: space-around;
+  justify-content: stretch;
   background-color: rgba(250, 250, 250, 0.87);
   height: 100%;
 }
 
 .column {
-  width: 45%;
+  /*width: 45%;*/
   height: auto;
   padding: 5px;
 }
 
 
 .row {
+  width:100%;
   height: auto;
-  width: 100%;
   padding: 5px;
 }

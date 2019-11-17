@@ -52,8 +52,20 @@ import {UserAchievementsComponent} from './pages/user-board/user-achievements/us
 import {NavbarComponent} from './navbar/navbar.component';
 import {RatingModule} from 'ng-starrating';
 import {UserModule} from './auth/user/user.module';
-import { LoginFormComponent } from './pages/login-form/login-form.component';
-import { RegisterFormComponent } from './pages/register-form/register-form.component';
+import {LoginFormComponent} from './pages/login-form/login-form.component';
+import {RegisterFormComponent} from './pages/register-form/register-form.component';
+import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('611144869422669')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -80,7 +92,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     UserAchievementsComponent,
     NavbarComponent,
     LoginFormComponent,
-    RegisterFormComponent,
+    RegisterFormComponent
   ],
   entryComponents: [ActivityDetailsDialogComponent],
   imports: [
@@ -112,9 +124,14 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     MatMenuModule,
     RatingModule,
     UserModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    SocialLoginModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders, {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

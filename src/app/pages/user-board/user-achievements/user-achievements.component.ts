@@ -23,6 +23,7 @@ export class UserAchievementsComponent implements OnInit {
   chart;
   @Input() trainingId: string;
   pointsMap: Map<string, DataPoint[]>;
+  hasAchievs = false;
 
   constructor(public achievService: AchievementService, public authService: AuthenticationService) {
     this.pointsMap = new Map<string, DataPoint[]>();
@@ -47,7 +48,6 @@ export class UserAchievementsComponent implements OnInit {
       this.achievService.getAchievementsForTraining(this.authService.getUsername(), id).subscribe(value => {
         console.log('value', value);
         this.generateAchievData(JSON.stringify(value));
-        this.createChart();
       }, error => {
         console.log('error', error.error.message);
       });
@@ -60,20 +60,26 @@ export class UserAchievementsComponent implements OnInit {
     const tableAchiev = achievs.slice(achievs.indexOf(':') + 1, achievs.length - 1);
     // console.log('tableAchiev:', JSON.stringify(tableAchiev));
     // const mapAchievs = JSON.parse(tableAchiev) as Map<string, any>;
-    const mapAchievs = new Map(Object.entries(JSON.parse(tableAchiev)));
-    console.log('mapAchievs:', mapAchievs);
-    console.log('keys:', mapAchievs.keys());
-    this.pointsMap = new Map<string, DataPoint[]>();
-    mapAchievs.forEach((value: Achievement[], key: string) => {
-      [...value].map(value1 => {
-        console.log(value1.exerciseName);
-        if (!this.pointsMap.has(value1.exerciseName)) {
-          this.pointsMap.set(value1.exerciseName, [new DataPoint(value1.date, value1.progressValue)]);
-        } else {
-          this.pointsMap.get(value1.exerciseName).push(new DataPoint(value1.date, value1.progressValue));
-        }
+    if (tableAchiev.length > 5) {
+      this.hasAchievs = true;
+      const mapAchievs = new Map(Object.entries(JSON.parse(tableAchiev)));
+      console.log('mapAchievs:', mapAchievs);
+      console.log('keys:', mapAchievs.keys());
+      this.pointsMap = new Map<string, DataPoint[]>();
+      mapAchievs.forEach((value: Achievement[], key: string) => {
+        [...value].map(value1 => {
+          console.log(value1.exerciseName);
+          if (!this.pointsMap.has(value1.exerciseName)) {
+            this.pointsMap.set(value1.exerciseName, [new DataPoint(value1.date, value1.progressValue)]);
+          } else {
+            this.pointsMap.get(value1.exerciseName).push(new DataPoint(value1.date, value1.progressValue));
+          }
+        });
       });
-    });
+      this.createChart();
+    } else {
+      this.hasAchievs = false;
+    }
     console.log('mappoints:', this.pointsMap);
     // const mappedAchievs = this.strMapToObj(JSON.parse(achievs));
     // console.log(mappedAchievs);

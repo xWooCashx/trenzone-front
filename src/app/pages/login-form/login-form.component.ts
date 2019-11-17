@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {MyErrorStateMatcher} from '../register-form/register-form.component';
 
+import { AuthService as NgAuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -15,13 +17,21 @@ export class LoginFormComponent implements OnInit {
   userDetails = new User();
   showErrorMessage = false;
   loading = false;
+  user: SocialUser;
+  loggedIn: boolean;
 
-  constructor(private authService: AuthService, public router: Router, public tokenStorage: TokenStorageService) {
+  constructor(public ngAuthService: NgAuthService, private authService: AuthService,
+              public router: Router, public tokenStorage: TokenStorageService) {
     this.userDetails.password = '';
     if (this.tokenStorage.getToken()) {
       this.router.navigateByUrl('/user').then(r => {
       });
     }
+    this.ngAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+    });
   }
 
   ngOnInit() {
@@ -42,5 +52,12 @@ export class LoginFormComponent implements OnInit {
           this.showErrorMessage = true;
           this.loading = false;
         });
+  }
+  signInWithFB(): void {
+    this.ngAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.ngAuthService.signOut();
   }
 }

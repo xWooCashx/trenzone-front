@@ -1,8 +1,11 @@
 .details {
   /*width: 500px;*/
-  /*max-width: 90%;*/
-  max-height: 300px;
-  height: 100%;
+}
+
+.card {
+
+  width: 500px;
+  height: 250px;
 }
 
 .details a {
@@ -12,4 +15,5 @@
 
 .tab {
   overflow: scroll;
+  height: 250px;
 }
