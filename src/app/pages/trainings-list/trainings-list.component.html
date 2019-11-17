@@ -13,22 +13,28 @@
         >
         </mat-progress-spinner>
       </div>
-      <table *ngIf="trainingsList && trainingsList.length > 0;else noResults" class="results">
+      <table *ngIf="trainingsList && trainingsList.length > 0 || trainersList && trainersList.length > 0;else noResults"
+             class="results">
         <thead>
         <label id="example-radio-group-label">Sort by:</label>
         <mat-button-toggle-group #group="matButtonToggleGroup">
-<!--          <mat-button-toggle *ngFor="let option of searchOption" value="name" (click)="changeSort('name')" *ngIf="group.value == 'name'">Name-->
-<!--            <mat-icon>{{direction == 1 && group.value == 'name' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>-->
-<!--          </mat-button-toggle>-->
+          <!--          <mat-button-toggle *ngFor="let option of searchOption" value="name" (click)="changeSort('name')" *ngIf="group.value == 'name'">Name-->
+          <!--            <mat-icon>{{direction == 1 && group.value == 'name' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>-->
+          <!--          </mat-button-toggle>-->
           <mat-button-toggle value="name" (click)="changeSort('name')">Name
-            <mat-icon  *ngIf="group.value == 'name'">{{direction == 1 && group.value == 'name' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
+            <mat-icon
+              *ngIf="group.value == 'name'">{{direction == 1 && group.value == 'name' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
           </mat-button-toggle>
-          <mat-button-toggle value="rating" (click)="changeSort('rating')"> Rating
-            <mat-icon  *ngIf="group.value == 'rating'">{{direction == 1 && group.value == 'rating' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle value="comments" (click)="changeSort('comments')">Popularity
-            <mat-icon *ngIf="group.value == 'comments'">{{direction == 1 && group.value == 'comments' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
-          </mat-button-toggle>
+          <ng-template [ngIf]="trainingsList">
+            <mat-button-toggle value="rating" (click)="changeSort('rating')"> Rating
+              <mat-icon
+                *ngIf="group.value == 'rating'">{{direction == 1 && group.value == 'rating' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="comments" (click)="changeSort('comments')">Popularity
+              <mat-icon
+                *ngIf="group.value == 'comments'">{{direction == 1 && group.value == 'comments' ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
+            </mat-button-toggle>
+          </ng-template>
         </mat-button-toggle-group>
         <!--        <mat-paginator-->
         <!--          [length]="searchResult.totalElements"-->
@@ -37,11 +43,21 @@
         <!--          (page)="changeResults($event)">-->
         <!--        </mat-paginator>-->
         </thead>
-        <tr *ngFor="let element of trainingsList">
-          <td>
-            <app-training-search-item [training]="element"></app-training-search-item>
-          </td>
-        </tr>
+        <ng-template [ngIf]="trainingsList">
+          <tr *ngFor="let element of trainingsList">
+            <td>
+              <app-training-search-item [training]="element"></app-training-search-item>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template [ngIf]="trainersList">
+          <tr *ngFor="let element of trainersList">
+            <td>
+              {{element.name + ' ' + element.lastName}}
+              <!--              <app-training-search-item [training]="element"></app-training-search-item>-->
+            </td>
+          </tr>
+        </ng-template>
       </table>
       <ng-template #noResults>No results found</ng-template>
 

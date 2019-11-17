@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainingService} from '../../service/training.service';
 import {Content, Pageable, TrainingsSearchResult} from '../../class/TrainingsSearchResult';
+import {TrainersSearchResult, Content as TrainerContent} from '../../class/TrainersSearchResult';
 import {MatButtonToggleChange, PageEvent} from '@angular/material';
 import {QueryObjects} from './trainings-search-panel/trainings-search-panel.component';
+import {$e} from 'codelyzer/angular/styles/chars';
+import {UserServiceService} from '../../service/user-service.service';
 
 @Component({
   selector: 'app-trainings-list',
@@ -25,8 +28,9 @@ export class TrainingsListComponent implements OnInit {
     {name: 'name', label: 'Name'},
     {name: 'name', label: 'Name'}];
   direction = 1;
+  private trainersList: TrainerContent[];
 
-  constructor(private trainingService: TrainingService) {
+  constructor(private trainingService: TrainingService, private userService: UserServiceService) {
     // this.findResults();
     this.difficulty = '';
     this.tags = [];
@@ -48,11 +52,16 @@ export class TrainingsListComponent implements OnInit {
     this.queryText = $event.name;
     this.tags = $event.tags;
     this.difficulty = $event.difficulty;
-    this.findResults();
+    this.loading = true;
+    if ($event.type === 'training') {
+      this.findTrainings();
+    } else if ($event.type === 'trainer') {
+      this.findTrainers();
+    }
   }
 
-  findResults() {
-    this.loading = true;
+  findTrainings() {
+    this.trainersList = null;
     this.trainingService.getTrainings(this.searchOption.pageSize,
       this.searchOption.pageNumber, this.queryText, this.tags, this.difficulty
     ).subscribe(data => {
@@ -62,12 +71,21 @@ export class TrainingsListComponent implements OnInit {
     });
   }
 
+  findTrainers() {
+    this.trainingsList = null;
+    this.userService.getTrainers(this.queryText
+    ).subscribe(data => {
+      this.trainersList = data.content;
+      this.loading = false;
+    });
+  }
+
   changeResults(page) {
     // this.pageSize = page.pageSize;
     // this.searchResult.number = page.pageIndex;
     this.searchOption.pageSize = page.pageSize;
     this.searchOption.pageNumber = page.pageIndex;
-    this.findResults();
+    // this.findResults();
   }
 
   changeSort(option: string) {
@@ -77,17 +95,23 @@ export class TrainingsListComponent implements OnInit {
       this.sort = option;
       this.direction = 1;
     }
-    this.trainingsList.sort((a, b) => {
-      if (this.sort === 'name') {
+    if (this.trainingsList) {
+      this.trainingsList.sort((a, b) => {
+        if (this.sort === 'name') {
+          return a.name.toLowerCase() > b.name.toLowerCase() ? this.direction : (-1) * this.direction;
+        }
+        if (this.sort === 'rating') {
+          return a.rate > b.rate ? this.direction : (-1) * this.direction;
+        }
+        if (this.sort === 'comments') {
+          return a.commentsSize > b.commentsSize ? this.direction : (-1) * this.direction;
+        }
+      });
+    } else if (this.trainersList) {
+      this.trainersList.sort((a, b) => {
         return a.name.toLowerCase() > b.name.toLowerCase() ? this.direction : (-1) * this.direction;
-      }
-      if (this.sort === 'rating') {
-        return a.rate > b.rate ? this.direction : (-1) * this.direction;
-      }
-      if (this.sort === 'comments') {
-        return a.commentsSize > b.commentsSize ? this.direction : (-1) * this.direction;
-      }
-    });
+      });
+    }
     console.log(option);
   }
 }

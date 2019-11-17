@@ -5,6 +5,7 @@ export class QueryObjects {
   name: string;
   tags: string[];
   difficulty: string;
+  type: string;
 }
 
 @Component({
@@ -21,6 +22,7 @@ export class TrainingsSearchPanelComponent implements OnInit {
   addOnBlur = true;
   queryObjects = new QueryObjects();
   difficulty = '';
+  searchType = 'training';
 
   constructor() {
   }
@@ -32,6 +34,7 @@ export class TrainingsSearchPanelComponent implements OnInit {
     this.queryObjects.name = this.text;
     this.queryObjects.tags = this.tags;
     this.queryObjects.difficulty = this.difficulty;
+    this.queryObjects.type = this.searchType;
     this.query.emit(this.queryObjects);
   }
 

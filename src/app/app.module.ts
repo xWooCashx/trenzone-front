@@ -55,6 +55,7 @@ import {UserModule} from './auth/user/user.module';
 import {LoginFormComponent} from './pages/login-form/login-form.component';
 import {RegisterFormComponent} from './pages/register-form/register-form.component';
 import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
+import {ToastrModule} from 'ngx-toastr';
 
 const config = new AuthServiceConfig([
   {
@@ -127,7 +128,8 @@ export function provideConfig() {
     MatDatepickerModule,
     SocialLoginModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     httpInterceptorProviders, {

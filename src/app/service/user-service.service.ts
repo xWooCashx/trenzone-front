@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from '../class/user';
 import {Content, TrainingsSearchResult} from '../class/TrainingsSearchResult';
 import {ActivatedTraining, ActiveTrainings} from '../class/ActivatedTraining';
+import {TrainersSearchResult} from '../class/TrainersSearchResult';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {ActivatedTraining, ActiveTrainings} from '../class/ActivatedTraining';
 export class UserServiceService {
   userURL = 'https://trenzone-server.herokuapp.com/accounts/';
   userURL2 = 'https://trenzone-server.herokuapp.com/account/';
+  userURL3 = 'https://trenzone-server.herokuapp.com/';
 
   constructor(private http: HttpClient) {
   }
@@ -49,5 +51,9 @@ export class UserServiceService {
 
   public findAllCommentsForAccount(id): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.userURL2 + id + '/comments');
+  }
+
+  public getTrainers(queryText: string): Observable<TrainersSearchResult> {
+    return this.http.get<TrainersSearchResult>(this.userURL3 + 'trainers?name=' + queryText);
   }
 }

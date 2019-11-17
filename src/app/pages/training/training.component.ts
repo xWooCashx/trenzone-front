@@ -12,6 +12,7 @@ import {ExerciseService} from '../../service/exercise.service';
 import {AuthenticationService} from '../../service/authentication.service';
 import {StarRatingComponent} from 'ng-starrating';
 import {UserServiceService} from '../../service/user-service.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-training',
@@ -35,7 +36,7 @@ export class TrainingComponent implements OnInit {
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private router: Router, private trainingService: TrainingService,
               private exerciseService: ExerciseService, public authenticationService: AuthenticationService,
-              public userService: UserServiceService) {
+              public userService: UserServiceService, public toastService: ToastrService) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadTrainingData(id);
@@ -140,6 +141,7 @@ export class TrainingComponent implements OnInit {
     this.exerciseService.save(acs, this.training.id).subscribe(value1 => {
       this.training.activities = value1;
       this.loading = false;
+      this.toastService.success('Saved', this.training.name, {positionClass: 'toast-top-center'});
     }, error => this.loading = false);
   }
 
@@ -208,6 +210,7 @@ export class TrainingComponent implements OnInit {
 
   deleteTraining() {
     this.trainingService.delete(this.training.id, this.training.username).subscribe(value => {
+      this.toastService.info('Deleted', this.training.name, {positionClass: 'toast-top-center'});
       this.router.navigateByUrl('/user').then(r => {
       });
     });

@@ -1,10 +1,15 @@
 <div >
+
   <mat-form-field appearance="outline" class="input-text" color="primary">
     <mat-label>Search for:</mat-label>
     <input (keydown.enter)="search()" type="search" matInput [(ngModel)]="text"/>
     <mat-icon matSuffix style="cursor: pointer" (click)="search()">search</mat-icon>
   </mat-form-field>
-  <mat-form-field class="input-text">
+  <mat-radio-group aria-label="Type" [(ngModel)]="searchType" #searchedObject>
+    <mat-radio-button value="training" #tra>Trainings</mat-radio-button>
+    <mat-radio-button value="trainer">Trainers</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field class="input-text" *ngIf="searchType == tra.value">
     <mat-label>Difficulty</mat-label>
     <mat-select [(value)]="difficulty">
       <mat-option value="">All</mat-option>
@@ -15,7 +20,7 @@
       <mat-option value="HARD">HARD</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="input-text">
+  <mat-form-field class="input-text" *ngIf="searchType == tra.value">
     <mat-chip-list #chipList aria-label="Fruit selection">
       <mat-chip *ngFor="let tag of tags" selectable="false"
                 [removable]="true" (removed)="remove(tag)">
