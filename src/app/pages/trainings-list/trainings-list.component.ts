@@ -28,7 +28,7 @@ export class TrainingsListComponent implements OnInit {
     {name: 'name', label: 'Name'},
     {name: 'name', label: 'Name'}];
   direction = 1;
-  private trainersList: TrainerContent[];
+  trainersList: TrainerContent[];
 
   constructor(private trainingService: TrainingService, private userService: UserServiceService) {
     // this.findResults();
