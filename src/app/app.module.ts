@@ -24,7 +24,7 @@ import {
   MatGridListModule,
   MatChipsModule,
   MatPaginatorModule,
-  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule
+  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule, MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -56,6 +56,7 @@ import {LoginFormComponent} from './pages/login-form/login-form.component';
 import {RegisterFormComponent} from './pages/register-form/register-form.component';
 import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
 import {ToastrModule} from 'ngx-toastr';
+import {TrainerDetailsComponent} from './pages/trainings-list/trainer-details/trainer-details.component';
 
 const config = new AuthServiceConfig([
   {
@@ -93,9 +94,11 @@ export function provideConfig() {
     UserAchievementsComponent,
     NavbarComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    TrainerDetailsComponent
   ],
-  entryComponents: [ActivityDetailsDialogComponent],
+  entryComponents: [ActivityDetailsDialogComponent,
+    TrainerDetailsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -135,7 +138,8 @@ export function provideConfig() {
     httpInterceptorProviders, {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }],
+    },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

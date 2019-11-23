@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {TrainingService} from '../../service/training.service';
 import {Content, Pageable, TrainingsSearchResult} from '../../class/TrainingsSearchResult';
 import {TrainersSearchResult, Content as TrainerContent} from '../../class/TrainersSearchResult';
-import {MatButtonToggleChange, PageEvent} from '@angular/material';
+import {MatButtonToggleChange, MatDialog, PageEvent} from '@angular/material';
 import {QueryObjects} from './trainings-search-panel/trainings-search-panel.component';
 import {$e} from 'codelyzer/angular/styles/chars';
 import {UserServiceService} from '../../service/user-service.service';
+import {TrainerDetailsComponent} from './trainer-details/trainer-details.component';
 
 @Component({
   selector: 'app-trainings-list',
@@ -30,7 +31,8 @@ export class TrainingsListComponent implements OnInit {
   direction = 1;
   trainersList: TrainerContent[];
 
-  constructor(private trainingService: TrainingService, private userService: UserServiceService) {
+  constructor(public dialog: MatDialog,
+              private trainingService: TrainingService, private userService: UserServiceService) {
     // this.findResults();
     this.difficulty = '';
     this.tags = [];
@@ -113,5 +115,16 @@ export class TrainingsListComponent implements OnInit {
       });
     }
     console.log(option);
+  }
+
+  showTrainerDetails(trainer: TrainerContent): void {
+    const dialogRef = this.dialog.open(TrainerDetailsComponent, {
+      width: '400px',
+      data: trainer
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

@@ -53,8 +53,13 @@
         <ng-template [ngIf]="trainersList">
           <tr *ngFor="let element of trainersList">
             <td>
-              {{element.name + ' ' + element.lastName}}
-              <!--              <app-training-search-item [training]="element"></app-training-search-item>-->
+              <mat-card-header class="card-header">
+                <mat-card-title (click)="showTrainerDetails(element)" style="cursor: pointer">
+                  {{element.name + ' ' + element.lastName}}
+                </mat-card-title>
+                <!--              <app-training-search-item [training]="element"></app-training-search-item>-->
+
+              </mat-card-header>
             </td>
           </tr>
         </ng-template>
