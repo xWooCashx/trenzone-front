@@ -1,17 +1,18 @@
-<div class="comments" style="width:100%;">
-  <mat-list class="comments-list">
+<div class="comments">
+  <mat-list class="comments-list" style="width:100%; overflow: scroll">
     <mat-list-item *ngFor="let c of comments">
-    <span mat-line>
-      {{c.username}}   {{c.date | date}}
+    <span matLine>
+      <b>{{c.username}}</b>   {{c.date | date:'medium'}}
     </span>
-      <span mat-line>{{c.content}}</span>
+      <span matLine>{{c.content}}</span>
+      <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
-  <div class="'new-comment">
-    <mat-form-field mat-line>
-      <mat-label>New Review:</mat-label>
-      <textarea matInput placeholder="Address" [(ngModel)]="newComment.content"></textarea>
+  <div class="'new-comment" style="display: flex; justify-content: space-around">
+    <mat-form-field style="width: 100%;" (keydown.enter)="sendComment()">
+      <mat-label>New Comment:</mat-label>
+      <textarea matInput placeholder="Review" [(ngModel)]="newComment.content"></textarea>
     </mat-form-field>
-    <button mat-flat-button color="accent" (click)="sendComment()">Send</button>
+    <button mat-flat-button color="accent" (click)="sendComment()" style="max-height: 30px;">Send</button>
   </div>
 </div>

@@ -14,4 +14,5 @@ export class Training {
   tags: string[];
   roles: string[];
   rate: number;
+  ratesSize: number;
 }

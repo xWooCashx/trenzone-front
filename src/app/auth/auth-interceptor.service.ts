@@ -35,21 +35,16 @@ export class AuthInterceptorService implements HttpInterceptor {
     console.log(req.urlWithParams);
     return next.handle(authReq).pipe(
       catchError((err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.error.status === '401' || err.error.status === 401) {
-            this.toasterService.error('Session expired', 'Please login again', {positionClass: 'toast-top-center'});
-            this.token.signOut();
-          } else {
-            try {
-              this.toasterService.error(err.error.messsage, err.error.title, {positionClass: 'toast-top-center'});
-            } catch (e) {
-              this.toasterService.error('An error occurred', '', {positionClass: 'toast-top-center'});
+          if (err instanceof HttpErrorResponse) {
+            if (err.error.status === '401' || err.error.status === 401) {
+              this.toasterService.error('Session expired', 'Please login again', {positionClass: 'toast-top-center'});
+              this.token.signOut();
             }
+            // log error
           }
-          // log error
+          return of(err);
         }
-        return of(err);
-      }));
+      ));
   }
 }
 

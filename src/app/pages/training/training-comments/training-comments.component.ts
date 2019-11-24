@@ -25,7 +25,10 @@ export class TrainingCommentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getCommentsForTraining(this.trainingId).subscribe(value => this.comments = value);
+    this.service.getCommentsForTraining(this.trainingId)
+      .subscribe(value => this.comments = value.sort((a, b) => {
+        return a < b ? 1 : -1;
+      }));
 
   }
 
@@ -34,7 +37,7 @@ export class TrainingCommentsComponent implements OnInit {
       this.newComment.trainingId = this.trainingId;
       console.log(JSON.stringify(this.newComment));
       this.service.postComment(this.newComment).subscribe(value => {
-        this.comments.push(value);
+        this.comments.unshift(value);
         this.newComment.content = '';
       }, error => console.log(error));
     }
