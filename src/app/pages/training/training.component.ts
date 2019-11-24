@@ -13,6 +13,8 @@ import {AuthenticationService} from '../../service/authentication.service';
 import {StarRatingComponent} from 'ng-starrating';
 import {UserServiceService} from '../../service/user-service.service';
 import {ToastrService} from 'ngx-toastr';
+import {TrainerDetailsComponent} from '../trainings-list/trainer-details/trainer-details.component';
+import {DeleteTrainingModalComponent} from './delete-training-modal/delete-training-modal.component';
 
 @Component({
   selector: 'app-training',
@@ -209,10 +211,17 @@ export class TrainingComponent implements OnInit {
   }
 
   deleteTraining() {
-    this.trainingService.delete(this.training.id, this.training.username).subscribe(value => {
-      this.toastService.info('Deleted', this.training.name, {positionClass: 'toast-top-center'});
-      this.router.navigateByUrl('/user').then(r => {
-      });
+    const dialogRef = this.dialog.open(DeleteTrainingModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('result :', result);
+      if (result) {
+        this.trainingService.delete(this.training.id, this.training.username).subscribe(value => {
+          this.toastService.info('Deleted', this.training.name, {positionClass: 'toast-top-center'});
+          this.router.navigateByUrl('/user').then(r => {
+          });
+        });
+      }
     });
   }
 

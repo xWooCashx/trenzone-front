@@ -119,7 +119,6 @@ export class TrainingsListComponent implements OnInit {
 
   showTrainerDetails(trainer: TrainerContent): void {
     const dialogRef = this.dialog.open(TrainerDetailsComponent, {
-      width: '400px',
       data: trainer
     });
 

@@ -13,6 +13,7 @@ import {TokenStorageService} from './token-storage.service';
 import {ToastrService} from 'ngx-toastr';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {AuthService} from './auth.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
@@ -21,7 +22,8 @@ const TOKEN_HEADER_KEY = 'Authorization';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private token: TokenStorageService, public toasterService: ToastrService, public router: Router) {
+  constructor(private token: TokenStorageService, public toasterService: ToastrService, public router: Router,
+              public authService: AuthService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -36,6 +38,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (err instanceof HttpErrorResponse) {
           if (err.error.status === '401' || err.error.status === 401) {
             this.toasterService.error('Session expired', 'Please login again', {positionClass: 'toast-top-center'});
+            this.token.signOut();
           } else {
             try {
               this.toasterService.error(err.error.messsage, err.error.title, {positionClass: 'toast-top-center'});

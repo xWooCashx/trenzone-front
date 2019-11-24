@@ -16,9 +16,9 @@
     </mat-chip-list>
   </mat-card-title>
   <mat-card-subtitle> Created at {{training.date | date:'medium'}} by {{training.username}}
-    <span title="comments">{{training.commentsSize + ':comments '}}</span>
-    <span title="comments">{{training.ratesSize + ':ratings '}}</span>
-    <span title="comments">{{training.daysSize + ':training days '}}</span>
-    <span title="comments">{{training.exercisesSize + ':exercises '}}</span>
+    <span title="comments">{{', comments: ' + training.commentsSize }}</span>
+    <span title="comments">{{ ' ratings: ' + training.ratesSize }}</span>
+    <span title="comments">{{' training days: ' + training.daysSize }}</span>
+    <span title="comments">{{ ' exercises: ' + training.exercisesSize }}</span>
   </mat-card-subtitle>
 </mat-card-header>

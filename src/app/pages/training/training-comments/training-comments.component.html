@@ -2,7 +2,7 @@
   <mat-list class="comments-list">
     <mat-list-item *ngFor="let c of comments">
     <span mat-line>
-      {{c.username}}   {{c.date}}
+      {{c.username}}   {{c.date | date}}
     </span>
       <span mat-line>{{c.content}}</span>
     </mat-list-item>

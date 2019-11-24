@@ -14,20 +14,59 @@ export class DataPoint {
   }
 }
 
+export class TableColumn {
+  exc: string;
+}
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
+
 @Component({
   selector: 'app-user-achievements',
   templateUrl: './user-achievements.component.html',
   styleUrls: ['./user-achievements.component.css']
 })
 export class UserAchievementsComponent implements OnInit {
+  // dataSource: TableColumn[] = [{exc: 'jeden'},
+  //   {exc: 'dwa'},
+  //   {exc: 'trzy'},
+  // ];
+  // displayedColumns = ['exc'];
+
+  constructor(public achievService: AchievementService, public authService: AuthenticationService) {
+    this.pointsMap = new Map<string, DataPoint[]>();
+  }
+
   chart;
   @Input() trainingId: string;
   pointsMap: Map<string, DataPoint[]>;
   hasAchievs = false;
+  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  constructor(public achievService: AchievementService, public authService: AuthenticationService) {
-    this.pointsMap = new Map<string, DataPoint[]>();
-    console.log('con', this.trainingId);
+  public static convertToObject(mapInstance): Object {
+    const obj = {};
+    for (const prop of mapInstance) {
+      obj[prop[0]] = prop[1];
+    }
+    return obj;
   }
 
   ngOnInit() {
@@ -46,7 +85,8 @@ export class UserAchievementsComponent implements OnInit {
   public getAchievs(id) {
     if (id) {
       this.achievService.getAchievementsForTraining(this.authService.getUsername(), id).subscribe(value => {
-        console.log('value', value);
+        // console.log('value', value);
+        // console.log(UserAchievementsComponent.convertToObject(value));
         this.generateAchievData(JSON.stringify(value));
       }, error => {
         console.log('error', error.error.message);
@@ -58,17 +98,19 @@ export class UserAchievementsComponent implements OnInit {
 
   private generateAchievData(achievs: string) {
     const tableAchiev = achievs.slice(achievs.indexOf(':') + 1, achievs.length - 1);
-    // console.log('tableAchiev:', JSON.stringify(tableAchiev));
-    // const mapAchievs = JSON.parse(tableAchiev) as Map<string, any>;
     if (tableAchiev.length > 5) {
       this.hasAchievs = true;
+      Object.entries(JSON.parse(tableAchiev)).map((value, index) => {
+        console.log(value);
+        console.log(index);
+      });
       const mapAchievs = new Map(Object.entries(JSON.parse(tableAchiev)));
-      console.log('mapAchievs:', mapAchievs);
-      console.log('keys:', mapAchievs.keys());
+      // console.log('mapAchievs:', mapAchievs);
+      // console.log('keys:', mapAchievs.keys());
       this.pointsMap = new Map<string, DataPoint[]>();
       mapAchievs.forEach((value: Achievement[], key: string) => {
         [...value].map(value1 => {
-          console.log(value1.exerciseName);
+          // console.log(value1.exerciseName);
           if (!this.pointsMap.has(value1.exerciseName)) {
             this.pointsMap.set(value1.exerciseName, [new DataPoint(value1.date, value1.progressValue)]);
           } else {
@@ -80,20 +122,8 @@ export class UserAchievementsComponent implements OnInit {
     } else {
       this.hasAchievs = false;
     }
-    console.log('mappoints:', this.pointsMap);
-    // const mappedAchievs = this.strMapToObj(JSON.parse(achievs));
-    // console.log(mappedAchievs);
   }
 
-  // private strMapToObj(strMap) {
-  //   const obj = Object.create(null);
-  //   for (const [k, v] of strMap) {
-  //     // We don’t escape the key '__proto__'
-  //     // which can cause problems on older engines
-  //     obj[k] = v;
-  //   }
-  //   return obj;
-  // }
 
   createChart() {
 

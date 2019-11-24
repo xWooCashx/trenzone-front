@@ -35,23 +35,23 @@
       </mat-form-field>
       <div *ngIf="userEditable.trainerDetails">
       <mat-form-field class="full-width" *ngIf="userEditable.trainerDetails">
-        <mat-label>First Name:</mat-label>
+        <mat-label>Description:</mat-label>
         <textarea matInput placeholder="Trainer description" [(ngModel)]="userEditable.trainerDetails.description"  name="description"
                   #description="ngModel"
         [disabled]="!editable"></textarea>
       </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>Weight:</mat-label>
+          <mat-label>Phone number:</mat-label>
           <input matInput [(ngModel)]="userEditable.trainerDetails.phoneNumber"  #number="ngModel"  name="number"
                  [disabled]="!editable">
         </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>Weight:</mat-label>
+          <mat-label>City:</mat-label>
           <input matInput [(ngModel)]="userEditable.trainerDetails.city"  #city="ngModel"  name="city"
                  [disabled]="!editable">
         </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>Weight:</mat-label>
+          <mat-label>Job:</mat-label>
           <input matInput [(ngModel)]="userEditable.trainerDetails.job"  #job="ngModel"  name="job"
                  [disabled]="!editable">
         </mat-form-field>

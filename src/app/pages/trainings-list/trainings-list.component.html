@@ -54,7 +54,8 @@
           <tr *ngFor="let element of trainersList">
             <td>
               <mat-card-header class="card-header">
-                <mat-card-title (click)="showTrainerDetails(element)" style="cursor: pointer">
+                <mat-card-title (click)="showTrainerDetails(element)" style="cursor: pointer"
+                                matTooltip="Click to see trainer details ">
                   {{element.name + ' ' + element.lastName}}
                 </mat-card-title>
                 <!--              <app-training-search-item [training]="element"></app-training-search-item>-->

@@ -24,7 +24,7 @@ import {
   MatGridListModule,
   MatChipsModule,
   MatPaginatorModule,
-  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule, MAT_DIALOG_DEFAULT_OPTIONS
+  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule, MAT_DIALOG_DEFAULT_OPTIONS, MatTooltipModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -57,6 +57,7 @@ import {RegisterFormComponent} from './pages/register-form/register-form.compone
 import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
 import {ToastrModule} from 'ngx-toastr';
 import {TrainerDetailsComponent} from './pages/trainings-list/trainer-details/trainer-details.component';
+import {DeleteTrainingModalComponent} from './pages/training/delete-training-modal/delete-training-modal.component';
 
 const config = new AuthServiceConfig([
   {
@@ -95,10 +96,12 @@ export function provideConfig() {
     NavbarComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    TrainerDetailsComponent
+    TrainerDetailsComponent,
+    DeleteTrainingModalComponent
   ],
   entryComponents: [ActivityDetailsDialogComponent,
-    TrainerDetailsComponent],
+    TrainerDetailsComponent,
+    DeleteTrainingModalComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -133,6 +136,7 @@ export function provideConfig() {
     MatRadioModule,
     MatButtonToggleModule,
     ToastrModule.forRoot(),
+    MatTooltipModule,
   ],
   providers: [
     httpInterceptorProviders, {
