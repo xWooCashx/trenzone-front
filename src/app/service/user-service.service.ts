@@ -5,6 +5,7 @@ import {User} from '../class/user';
 import {Content, TrainingsSearchResult} from '../class/TrainingsSearchResult';
 import {ActivatedTraining, ActiveTrainings} from '../class/ActivatedTraining';
 import {TrainersSearchResult} from '../class/TrainersSearchResult';
+import {Comment} from '../class/Comment';
 
 @Injectable({
   providedIn: 'root'

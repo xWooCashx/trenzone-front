@@ -1,0 +1,17 @@
+.userTrainings {
+  width: 100%;
+}
+
+.adminResults td {
+  /*background-color: #cccccc;*/
+  transition: height 0.5s ease-in-out;
+}
+
+.adminResults a {
+  text-decoration: none;
+  color: black;
+}
+
+.name {
+  width: 90%
+}

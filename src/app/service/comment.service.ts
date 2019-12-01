@@ -21,4 +21,8 @@ export class CommentService {
   public postComment(comment: Comment): Observable<Comment> {
     return this.http.post<Comment>(this.commentsUrl + 'comment', comment);
   }
+
+  public deleteComment(id): Observable<string> {
+    return this.http.delete<string>(this.commentsUrl + 'comment/' + id);
+  }
 }

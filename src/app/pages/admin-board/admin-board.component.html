@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="input-text" color="primary">
+      <mat-label>Search for:</mat-label>
+      <input (keyup)="search()" type="search" matInput [(ngModel)]="query"/>
+      <mat-icon matSuffix style="cursor: pointer" (click)="search()">search</mat-icon>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let user of users" (afterExpand)="changeUser(user.username)"
+                       (expandedChange)="loading = true" class="mat-expansion-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="width:50%">
+        {{user.username}}&nbsp;({{user.name + " " + user.lastName}})
+      </mat-panel-title>
+      <mat-panel-description style="width:50%">
+        Email:{{user.email}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+        <mat-tab-group class="details" *ngIf="!loading">
+          <mat-tab label="Trainings" class="tab">
+            <ng-template matTabContent>
+              <mat-card>
+                <table *ngIf="userTrainings && userTrainings.length > 0;else noResults" class="adminResults">
+                  <tr *ngFor="let element of userTrainings; let i=index" >
+                    <td class="name">
+                      <a routerLink="{{'/training/'+element.id}}">
+                        {{element.name}}</a>
+                    </td>
+                    <td>
+                      <button mat-raised-button color="accent" (click)="deleteTraining(user.username, i)">Delete</button>
+                    </td>
+                  </tr>
+                </table>
+                <ng-template #noResults>No trainings found</ng-template>
+              </mat-card>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Comments"  *ngIf="userComments">
+            <ng-template matTabContent>
+              <mat-card>
+                <table *ngIf="userComments && userComments.length > 0;else noResults" class="adminResults">
+                  <tr *ngFor="let element of userComments; let i=index">
+                    <td class="name">
+                      <a routerLink="{{'/training/'+element.trainingId}}">
+                        {{element.content}}</a>
+                    </td>
+                    <td>
+                      <button mat-raised-button color="accent" (click)="deleteComment(user.username, i)">Delete</button>
+                    </td>
+                  </tr>
+                </table>
+                <ng-template #noResults>No comments found</ng-template>
+              </mat-card>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>

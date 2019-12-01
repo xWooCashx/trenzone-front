@@ -13,7 +13,9 @@ export class UserBoardComponent implements OnInit {
   private childComponent: UserAchievementsComponent;
 
   constructor(public authService: AuthenticationService) {
-    console.log('ROLES:)', this.authService.getRoles());
+    // if (this.authService.getRoles()[0] === 'ROLE_ADMIN') {
+    //
+    // }
   }
 
   ngOnInit() {

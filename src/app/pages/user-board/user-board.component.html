@@ -1,6 +1,6 @@
-<mat-grid-list *ngIf="!authService.isLogged(); else loggedIn">
-  Welcome to Trenzone!!
-</mat-grid-list>
+<div *ngIf="this.authService.getRoles()[0] === 'ROLE_ADMIN'; else loggedIn">
+  <app-admin-board></app-admin-board>
+</div>
 <ng-template #loggedIn>
   <div class="user-board">
     <div class="column">

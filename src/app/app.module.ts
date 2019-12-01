@@ -24,7 +24,14 @@ import {
   MatGridListModule,
   MatChipsModule,
   MatPaginatorModule,
-  MatToolbarModule, MatMenuModule, MatDatepickerModule, MatRadioModule, MatButtonToggleModule, MAT_DIALOG_DEFAULT_OPTIONS, MatTooltipModule
+  MatToolbarModule,
+  MatMenuModule,
+  MatDatepickerModule,
+  MatRadioModule,
+  MatButtonToggleModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatTooltipModule,
+  MatExpansionModule
 } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ExercisesListComponent} from './exercises-list/exercises-list.component';
@@ -58,6 +65,7 @@ import {SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angul
 import {ToastrModule} from 'ngx-toastr';
 import {TrainerDetailsComponent} from './pages/trainings-list/trainer-details/trainer-details.component';
 import {DeleteTrainingModalComponent} from './pages/training/delete-training-modal/delete-training-modal.component';
+import { AdminBoardComponent } from './pages/admin-board/admin-board.component';
 
 const config = new AuthServiceConfig([
   {
@@ -97,7 +105,8 @@ export function provideConfig() {
     LoginFormComponent,
     RegisterFormComponent,
     TrainerDetailsComponent,
-    DeleteTrainingModalComponent
+    DeleteTrainingModalComponent,
+    AdminBoardComponent
   ],
   entryComponents: [ActivityDetailsDialogComponent,
     TrainerDetailsComponent,
@@ -137,6 +146,7 @@ export function provideConfig() {
     MatButtonToggleModule,
     ToastrModule.forRoot(),
     MatTooltipModule,
+    MatExpansionModule,
   ],
   providers: [
     httpInterceptorProviders, {
