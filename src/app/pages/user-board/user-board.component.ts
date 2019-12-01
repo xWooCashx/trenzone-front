@@ -13,6 +13,7 @@ export class UserBoardComponent implements OnInit {
   private childComponent: UserAchievementsComponent;
 
   constructor(public authService: AuthenticationService) {
+    console.log('ROLES:)', this.authService.getRoles());
   }
 
   ngOnInit() {

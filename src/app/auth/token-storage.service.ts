@@ -15,7 +15,7 @@ export class TokenStorageService {
   constructor(private router: Router) {
   }
 
-  isStillLogged(){
+  isStillLogged() {
     if (!window.sessionStorage.getItem(TOKEN_KEY)) {
       this.router.navigateByUrl('/login').then(r => {
       });
@@ -53,8 +53,11 @@ export class TokenStorageService {
     this.roles = [];
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
+      console.log('sessionStorage', sessionStorage.getItem(AUTHORITIES_KEY));
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
         this.roles.push(authority.authority);
+        console.log('authorities');
+        console.log(authority.authority);
       });
     }
 

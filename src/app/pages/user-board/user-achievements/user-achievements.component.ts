@@ -61,7 +61,7 @@ export class UserAchievementsComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  public static convertToObject(mapInstance): Object {
+  public static convertToObject(mapInstance): object {
     const obj = {};
     for (const prop of mapInstance) {
       obj[prop[0]] = prop[1];
@@ -173,6 +173,16 @@ export class UserAchievementsComponent implements OnInit {
       e.dataSeries.visible = !(typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible);
       chartCopy.render();
     }
+
+    // console.log('ngonit', this.trainingId);
+    // if (this.trainingId) {
+    //   this.achievService.getAchievementsForTraining(this.authService.getUsername(), this.trainingId).subscribe(value => {
+    //     console.log('value', value);
+    //   }, error => {
+    //     console.log('error', error.error.message);
+    //   });
+    //   this.createChart();
+    // }
   }
 
 }
